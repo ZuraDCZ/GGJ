@@ -4,9 +4,14 @@ using UnityEngine;
 
 public enum GameState
 {
-    MENU,
-    GAMEPLAY,
-    PAUSE
+    None,
+    LoadMainMenu,
+    MainMenu,
+    LoadGame,
+    Playing,
+    Pause,
+    Victory,
+    GameOver
 }
 
 public class GameManager : MonoBehaviour
@@ -16,20 +21,47 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-        if (GameObject.Find("GameManager") != this)
+        if (GameObject.Find("GameManager") == gameObject)
+        {
+            instance = this;
+        }
+        else
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
+        state = GameState.None;
     }
 
     private void Start()
     {
-        state = GameState.MENU;
+        ChangeGameState(GameState.MainMenu);
     }
 
-    public void SetGameState(GameState newState)
+    public void ChangeGameState(GameState newState)
     {
         state = newState;
+
+        switch (state)
+        {
+            case GameState.None:
+                break;
+            case GameState.LoadMainMenu:
+                break;
+            case GameState.MainMenu:
+                break;
+            case GameState.LoadGame:
+                break;
+            case GameState.Playing:
+                break;
+            case GameState.Pause:
+                break;
+            case GameState.Victory:
+                break;
+            case GameState.GameOver:
+                break;
+            default:
+                break;
+        }
     }
 }
