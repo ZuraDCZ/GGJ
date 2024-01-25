@@ -6,15 +6,6 @@
             "id": "9aecee67-e042-4030-8ae5-36df17653a05",
             "actions": [
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "95fccaf3-da4c-443b-bb61-c70e524a1a0f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Movement",
                     "type": "Value",
                     "id": "7db69e73-9613-4e8b-8f0c-31d88bc122a5",
@@ -22,20 +13,18 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "DeliverFood",
+                    "type": "Button",
+                    "id": "46b5bb7c-0107-442c-9306-461b8079bec0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "54e34004-a225-4764-b769-249305a95974",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "2D Vector",
                     "id": "2c8ecff2-79b4-4fa3-829e-f088cb6dd257",
@@ -90,6 +79,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "e115e3e4-bcfd-4133-8f2e-cbf6284321d4",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DeliverFood",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

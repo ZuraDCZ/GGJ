@@ -150,7 +150,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 4
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -204,7 +204,7 @@ MonoBehaviour:
   currentPatience: 0
   currentEatingTime: 0
   target: {fileID: 0}
-  speed: 200
+  speed: 100
   nextWaypointDist: 2
 --- !u!114 &6180655777054953894
 MonoBehaviour:

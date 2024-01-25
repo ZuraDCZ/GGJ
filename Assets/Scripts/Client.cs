@@ -21,6 +21,7 @@ public class Client : MonoBehaviour
     public float currentPatience;
     public float currentEatingTime;
     private Table usedTable;
+    //private Food selectedFood;
 
     public delegate void OnSat(); //Client sat event
     public OnSat onSat;
@@ -90,7 +91,7 @@ public class Client : MonoBehaviour
 
         //Gets the direction where the agent needs to go
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = direction * speed * Time.fixedDeltaTime;
+        Vector2 force = direction * speed * Time.deltaTime;
 
         //Moves the agent towrads the direction calculated
         rb.AddForce(force, ForceMode2D.Impulse);
@@ -102,6 +103,7 @@ public class Client : MonoBehaviour
         {
             currentWaypoint++;
         }
+        Debug.Log("Client: " + state + " " + rb.velocity);
     }
 
     private void OnPathComplete(Path p)
@@ -146,8 +148,10 @@ public class Client : MonoBehaviour
                 break;
 
             case ClientState.SAT:
+                gameObject.layer = 3; 
                 LvlManager.instance.clientsWaiting.Remove(this);
                 LvlManager.instance.clientsSat.Add(this);
+                //selectedFood = Food.GenerateRandomFood();
                 break;
 
             case ClientState.EATING:
@@ -221,6 +225,8 @@ public class Client : MonoBehaviour
                 break;
 
             case ClientState.DONE:
+                //Vector2 dir = (LvlManager.instance.exitPosition.position - transform.position).normalized;
+                //rb.AddForce(dir * 10f * Time.deltaTime, ForceMode2D.Impulse);
                 Leave();
                 break;
 
@@ -257,4 +263,9 @@ public class Client : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    //public int GetSelectedFoodID()
+    //{
+    //    return selectedFood.GetID();
+    //}
 }
