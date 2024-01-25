@@ -7,7 +7,7 @@ public class LvlManager : MonoBehaviour
     public static LvlManager instance;
     [SerializeField] private GameObject[] clientPrefab; //Clients prefabs array. Drag to inspector to add
     [SerializeField] private Transform spawnPosition; //Transform whre the clients spawn. Not parented
-    [SerializeField] private Transform waitPosition; //Transform where the clients wait. Not parented
+    public Transform waitPosition; //Transform where the clients wait. Not parented
     public Transform exitPosition; //Transform where the clients exit the place. Not parented
     [SerializeField] private float spawnRate; //Time it takes for a client to spawn
     [SerializeField] private float sendRate; //Time it takes for a waitng client to be given a table
@@ -52,9 +52,9 @@ public class LvlManager : MonoBehaviour
         if (currentSpawnTimer <= 0 && clientsWaiting.Count < tables.Count) //Checks if its time to spawn and if there is room to spawn another client
         {
             int randomIndex = Random.Range(0, clientPrefab.Length); //Selects a client to spawn from the prefab array
-            Client newClient = Instantiate(clientPrefab[randomIndex], spawnPosition.position, Quaternion.identity).GetComponent<Client>(); //Spawns client at given location
-            newClient.UpdatePath(waitPosition.position + new Vector3(0, - 1 * (clientsWaiting.Count - 1))); //Sets target to wait on position and makes a line of them
-            newClient.SetState(ClientState.WAITING); //Sets waiting state
+            GameObject myObject = Instantiate(clientPrefab[randomIndex], spawnPosition.position, Quaternion.identity);
+            Client myClient = myObject.GetComponent<Client>(); //Spawns client at given location
+            myClient.SetState(ClientState.WAITING); //Sets waiting state
             currentSpawnTimer = spawnRate; //Resets timer
         }
     }
@@ -80,7 +80,7 @@ public class LvlManager : MonoBehaviour
                             {
                                 if (sit.Value == false) //If its available
                                 {
-                                    clientToSit.UpdatePath(sit.Key.position); //Send client to that sit
+                                    clientToSit.SetDestination(sit.Key.position); //Send client to that sit
                                     table.Sits()[sit.Key] = true; //Mark sit as filled
                                     break;
                                 }
