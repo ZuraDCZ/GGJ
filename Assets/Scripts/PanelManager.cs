@@ -9,51 +9,30 @@ public class PanelManager : MonoBehaviour
     [SerializeField] public GameObject mainPannel;
     [SerializeField] public GameObject playerViewPannel;
     [SerializeField] public GameObject optionsPannel;
-    [SerializeField] public List<GameObject> pannels;
-    [SerializeField] public List<GameObject> optionsList;
+
+    public void OpenPlayerView()
+    {
+        mainPannel.SetActive(false);
+        playerViewPannel.SetActive(true);
+
+    }
+
+    public void OptionsPannel()
+    {
+        playerViewPannel.SetActive(false);
+        mainPannel.SetActive(false);
+        optionsPannel.SetActive(true);
+    }
+
+    public void DisactivetePlayerView()
+    {
+        mainPannel.SetActive(false);
+    }
 
     public void OpenPausePannel()
     {
-        mainPannel.SetActive(false);
-        playerViewPannel.SetActive(true);
-
-    }
-
-    public void OpenNotesPannel()
-    {
-        playerViewPannel.SetActive(false);
-        mainPannel.SetActive(false);
-    }
-
-    public void OpenVotingPannel()
-    {
-        mainPannel.SetActive(false);
-    }
-
-    public void BackToMainPannel()
-    {
         playerViewPannel.SetActive(false);
         mainPannel.SetActive(true);
-    }
-
-
-    // Update is called once per frame
-    public void SetPannelOn(int index)
-    {
-        pannels[index].SetActive(true);
-        playerViewPannel.SetActive(false);
-    }
-
-    public void BackToPannel(int index)
-    {
-        pannels[index].SetActive(false);
-        playerViewPannel.SetActive(true);
-    }
-
-    public void ClosePannel(int identifyer)
-    {
-        optionsList[identifyer].SetActive(false);
-        optionsPannel.SetActive(false);
     }
 
     public void closingApp()
