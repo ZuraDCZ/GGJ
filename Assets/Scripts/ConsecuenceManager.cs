@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConsecuencesManager : MonoBehaviour
+public class ConsecuenceManager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class ConsecuencesManager : MonoBehaviour
     }
 
     // Current difficulty level
-    public Consecuence currentDifficulty;
+    public Consecuence CurrentCC;
 
     // Difficulty may variate based on 
     public float easyWeight = 1f;
@@ -28,46 +28,40 @@ public class ConsecuencesManager : MonoBehaviour
     // Funcion para elegir la dificultad
     public void SetDifficulty(Consecuence consecuence)
     {
-        currentDifficulty = consecuence;
+        CurrentCC = consecuence;
 
         // Adjust game parameters based on difficulty
-        switch (currentDifficulty)
+        switch (CurrentCC)
         {
             case Consecuence.LaughVibration:
-                setLaughingConsecuence();
+                SetLaughVibration();
                 break;
             case Consecuence.MadMonster:
-                setMadConsecuence();
+                SetMadMonster();
                 break;
             case Consecuence.MonsterDiedLaugh:
-                SetDieConsecuence();
+                SetDyingMonster();
                 break;
         }
     }
 
-    private void setLaughingConsecuence()
+    private void SetLaughVibration()
     {
         Debug.Log("Easy difficulty set");
         // Adjust other parameters as needed
     }
 
-    private void setMadConsecuence()
+    private void SetMadMonster()
     {
         Debug.Log("Medium difficulty set");
         // Adjust other parameters as needed
     }
 
-    private void SetDieConsecuence()
+    private void SetDyingMonster()
     {
         Debug.Log("Hard difficulty set");
         // Adjust other parameters as needed
     }
 
-    public void IncreaseDifficulty()
-    {        
-        // or after the player reaches a certain score
-        // For simplicity, we're just going through the difficulties in order
-        int nextDifficultyIndex = ((int)currentDifficulty + 1) % System.Enum.GetValues(typeof(Consecuence)).Length;
-        SetDifficulty((Consecuence)nextDifficultyIndex);
-    }
+   
 }
