@@ -21,7 +21,6 @@ public class Client : MonoBehaviour
     public float currentPatience;
     public float currentEatingTime;
     private Table usedTable;
-    //private Food selectedFood;
 
     public delegate void OnSat(); //Client sat event
     public OnSat onSat;
@@ -30,7 +29,7 @@ public class Client : MonoBehaviour
     public OnServed onServed;
 
     //Movement requirements------------------------------
-    [SerializeField]private Transform target;
+    [SerializeField]private Vector3 target;
     [SerializeField]private float speed = 200f;
     [SerializeField]private float nextWaypointDist = 3f;
     Path path;
@@ -60,6 +59,7 @@ public class Client : MonoBehaviour
             onServed += StartEating;
         }
 
+        InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 
     private void Update()
@@ -93,7 +93,7 @@ public class Client : MonoBehaviour
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
 
-        //Moves the agent towrads the direction calculated
+        //Moves the agent towards the direction calculated
         rb.AddForce(force, ForceMode2D.Impulse);
 
         //Gets distance to next point to select the next one
@@ -103,9 +103,24 @@ public class Client : MonoBehaviour
         {
             currentWaypoint++;
         }
-        Debug.Log("Client: " + state + " " + rb.velocity);
     }
 
+    /// <summary>
+    /// Calculates path towards target
+    /// </summary>
+    /// <param name="targetPosition"></param>
+    public void UpdatePath()
+    {
+        if (seeker.IsDone())
+        {
+            seeker.StartPath(rb.position, target, OnPathComplete);
+        }
+    }
+
+    /// <summary>
+    /// Resets waypoint index on complete path
+    /// </summary>
+    /// <param name="p"></param>
     private void OnPathComplete(Path p)
     {
         if (!p.error)
@@ -116,18 +131,13 @@ public class Client : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets agent target to go towards to
+    /// Sets new target position
     /// </summary>
-    /// <param name="targetPosition"></param>
-    public void UpdatePath(Vector3 targetPosition)
+    /// <param name="newTarget"></param>
+    public void SetTarget(Vector3 newTarget)
     {
-        //if (seeker.IsDone())
-        //{
-        //    seeker.StartPath(rb.position, targetPosition, OnPathComplete);
-        //}
-        seeker.StartPath(rb.position, targetPosition, OnPathComplete);
+        target = newTarget;
     }
-
 
     /// <summary>
     /// Updates agent state
@@ -148,10 +158,8 @@ public class Client : MonoBehaviour
                 break;
 
             case ClientState.SAT:
-                gameObject.layer = 3; 
                 LvlManager.instance.clientsWaiting.Remove(this);
                 LvlManager.instance.clientsSat.Add(this);
-                //selectedFood = Food.GenerateRandomFood();
                 break;
 
             case ClientState.EATING:
@@ -225,8 +233,6 @@ public class Client : MonoBehaviour
                 break;
 
             case ClientState.DONE:
-                //Vector2 dir = (LvlManager.instance.exitPosition.position - transform.position).normalized;
-                //rb.AddForce(dir * 10f * Time.deltaTime, ForceMode2D.Impulse);
                 Leave();
                 break;
 
@@ -248,12 +254,21 @@ public class Client : MonoBehaviour
     /// </summary>
     private void Leave()
     {
-        UpdatePath(LvlManager.instance.exitPosition.position);
+        if (usedTable != null)
+        {
+            usedTable.Unoccupy();
+        }
+        SetTarget(LvlManager.instance.exitPosition.position);
     }
 
     public void SetTable(Table table)
     {
         usedTable = table;
+    }
+
+    public Table GetTable()
+    {
+        return usedTable;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -263,9 +278,4 @@ public class Client : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    //public int GetSelectedFoodID()
-    //{
-    //    return selectedFood.GetID();
-    //}
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LvlManager : MonoBehaviour
@@ -53,7 +54,7 @@ public class LvlManager : MonoBehaviour
         {
             int randomIndex = Random.Range(0, clientPrefab.Length); //Selects a client to spawn from the prefab array
             Client newClient = Instantiate(clientPrefab[randomIndex], spawnPosition.position, Quaternion.identity).GetComponent<Client>(); //Spawns client at given location
-            newClient.UpdatePath(waitPosition.position + new Vector3(0, - 1 * (clientsWaiting.Count - 1))); //Sets target to wait on position and makes a line of them
+            newClient.SetTarget(waitPosition.position + new Vector3(0, - 1 * (clientsWaiting.Count - 1))); //Sets target to wait on position and makes a line of them
             newClient.SetState(ClientState.WAITING); //Sets waiting state
             currentSpawnTimer = spawnRate; //Resets timer
         }
@@ -64,9 +65,9 @@ public class LvlManager : MonoBehaviour
     /// </summary>
     private void SendClients()
     {
-        currentSendTimer -= Time.deltaTime; //Substracts time
         if (clientsWaiting.Count > 0) //Checks if there are clients waiting
         {
+            currentSendTimer -= Time.deltaTime; //Substracts time
             if (currentSendTimer <= 0) //Checks if its time to give a client a table
             {
                 foreach (Table table in tables) //Look for each of the tables
@@ -75,22 +76,10 @@ public class LvlManager : MonoBehaviour
                     {
                         if (!table.isOccupied()) //Get the first unnocupied one
                         {
-                            Client clientToSit = clientsWaiting[0]; //Gets the first one on queue
-                            foreach (var sit in table.Sits()) //Look for the first available sit on the table
-                            {
-                                if (sit.Value == false) //If its available
-                                {
-                                    clientToSit.UpdatePath(sit.Key.position); //Send client to that sit
-                                    table.Sits()[sit.Key] = true; //Mark sit as filled
-                                    break;
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-                            }
+                            Client clientToSit = clientsWaiting.ElementAt(0); //Gets the first one on queue
+                            clientToSit.SetTarget(table.GetSit().position); //Set destination towards table sit
                             clientToSit.SetState(ClientState.SAT); //Set sitting state
-                            clientToSit.SetTable(table);
+                            clientToSit.SetTable(table); //Assign table
                             table.Occupy(); //Occupies the table
                             currentSendTimer = sendRate; //Resets timer
                             break;

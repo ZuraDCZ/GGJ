@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6180655777054953898}
   - component: {fileID: 6180655777054953899}
   - component: {fileID: 6180655777054953894}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Client
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,13 +199,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  patienceLvl: 100
+  patienceLvl: 25
   eatingTime: 30
   currentPatience: 0
   currentEatingTime: 0
-  target: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
   speed: 100
-  nextWaypointDist: 2
+  nextWaypointDist: 0.85
 --- !u!114 &6180655777054953894
 MonoBehaviour:
   m_ObjectHideFlags: 0
