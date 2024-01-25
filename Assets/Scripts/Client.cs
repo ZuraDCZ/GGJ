@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
-using UnityEditor.PackageManager;
 
 public enum ClientState
 {
@@ -15,15 +14,14 @@ public enum ClientState
 
 public class Client : MonoBehaviour
 {
-    private AIPath aiPath;
-    private Table usedTable;
-
     //Properties-----------------------------------------
     public ClientState state;
     [SerializeField] private float patienceLvl = 100f;
     [SerializeField] private float eatingTime = 30f;
     public float currentPatience;
     public float currentEatingTime;
+    private Table usedTable;
+    //private Food selectedFood;
 
     public delegate void OnSat(); //Client sat event
     public OnSat onSat;
@@ -31,9 +29,22 @@ public class Client : MonoBehaviour
     public delegate void OnServed(); //Client served event
     public OnServed onServed;
 
+    //Movement requirements------------------------------
+    [SerializeField]private Transform target;
+    [SerializeField]private float speed = 200f;
+    [SerializeField]private float nextWaypointDist = 3f;
+    Path path;
+    int currentWaypoint = 0;
+    bool reachedEnd = false;
+
+    Seeker seeker;
+    Rigidbody2D rb;
+    //--------------------------------------------------------
+
     private void Awake()
     {
-        aiPath = new AIPath();
+        seeker = GetComponent<Seeker>();
+        rb = GetComponent<Rigidbody2D>();
         SetState(ClientState.NONE);
     }
 
@@ -42,12 +53,13 @@ public class Client : MonoBehaviour
         //Set timers
         currentPatience = patienceLvl;
         currentEatingTime = eatingTime;
-
+        
         //Subscribe to delegates
         if (onServed != null)
         {
             onServed += StartEating;
         }
+
     }
 
     private void Update()
@@ -55,10 +67,67 @@ public class Client : MonoBehaviour
         HandleBehaviour();
     }
 
-    public void SetDestination(Vector3 destination)
+    private void FixedUpdate()
     {
-        aiPath.destination = destination;
+        HandleMovement();
     }
+
+    private void HandleMovement()
+    {
+        //If there is no path, do nothing
+        if (path == null) 
+            return;
+
+        //Checks if the agent reached its destination 
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            reachedEnd = true;
+            return;
+        }
+        else
+        {
+            reachedEnd = false;
+        }
+
+        //Gets the direction where the agent needs to go
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 force = direction * speed * Time.deltaTime;
+
+        //Moves the agent towrads the direction calculated
+        rb.AddForce(force, ForceMode2D.Impulse);
+
+        //Gets distance to next point to select the next one
+        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+        if (distance < nextWaypointDist)
+        {
+            currentWaypoint++;
+        }
+        Debug.Log("Client: " + state + " " + rb.velocity);
+    }
+
+    private void OnPathComplete(Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+
+    /// <summary>
+    /// Sets agent target to go towards to
+    /// </summary>
+    /// <param name="targetPosition"></param>
+    public void UpdatePath(Vector3 targetPosition)
+    {
+        //if (seeker.IsDone())
+        //{
+        //    seeker.StartPath(rb.position, targetPosition, OnPathComplete);
+        //}
+        seeker.StartPath(rb.position, targetPosition, OnPathComplete);
+    }
+
 
     /// <summary>
     /// Updates agent state
@@ -70,19 +139,19 @@ public class Client : MonoBehaviour
 
         //Handles the start of each state
         switch (state)
-        {
+        { 
             case ClientState.NONE:
                 break;
 
             case ClientState.WAITING:
-                SetDestination(LvlManager.instance.waitPosition.position + new Vector3(0, -1 * (LvlManager.instance.clientsWaiting.Count - 1))); //Sets target to wait on position and makes a line of them
                 LvlManager.instance.clientsWaiting.Add(this);
                 break;
 
             case ClientState.SAT:
-                gameObject.layer = 3;
+                gameObject.layer = 3; 
                 LvlManager.instance.clientsWaiting.Remove(this);
                 LvlManager.instance.clientsSat.Add(this);
+                //selectedFood = Food.GenerateRandomFood();
                 break;
 
             case ClientState.EATING:
@@ -95,7 +164,7 @@ public class Client : MonoBehaviour
                 {
                     LvlManager.instance.clientsWaiting.Remove(this);
                 }
-                else if (LvlManager.instance.clientsSat.Contains(this))
+                else if(LvlManager.instance.clientsSat.Contains(this))
                 {
                     LvlManager.instance.clientsSat.Remove(this);
                 }
@@ -127,13 +196,13 @@ public class Client : MonoBehaviour
     public void HandleBehaviour()
     {
         switch (state)
-        {
+        { 
             case ClientState.NONE:
                 break;
 
             case ClientState.WAITING:
                 currentPatience -= Time.deltaTime;
-                if (currentPatience <= 0)
+                if(currentPatience <= 0)
                 {
                     SetState(ClientState.DONE);
                 }
@@ -156,6 +225,8 @@ public class Client : MonoBehaviour
                 break;
 
             case ClientState.DONE:
+                //Vector2 dir = (LvlManager.instance.exitPosition.position - transform.position).normalized;
+                //rb.AddForce(dir * 10f * Time.deltaTime, ForceMode2D.Impulse);
                 Leave();
                 break;
 
@@ -177,7 +248,7 @@ public class Client : MonoBehaviour
     /// </summary>
     private void Leave()
     {
-        SetDestination(LvlManager.instance.exitPosition.position);
+        UpdatePath(LvlManager.instance.exitPosition.position);
     }
 
     public void SetTable(Table table)
@@ -192,4 +263,9 @@ public class Client : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    //public int GetSelectedFoodID()
+    //{
+    //    return selectedFood.GetID();
+    //}
 }

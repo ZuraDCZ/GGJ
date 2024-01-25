@@ -16,10 +16,10 @@ public class Food : MonoBehaviour
         return id;
     }
 
-    //public static Food GenerateRandomFood()
-    //{
-    //    int randomID = Random.Range(0,3);
-    //    Food newFood = new Food(randomID);
-    //    return newFood;
-    //}
+    public static Food GenerateRandomFood()
+    {
+        int randomID = Random.Range(0,3);
+        Food newFood = new Food(randomID);
+        return newFood;
+    }
 }
