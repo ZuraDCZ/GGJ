@@ -150,7 +150,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
+  m_LinearDrag: 4
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -198,9 +198,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05c2cfabf4123a4f9e55b85f2eadf88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
+  patienceLvl: 100
+  eatingTime: 30
+  currentPatience: 0
+  currentEatingTime: 0
   target: {fileID: 0}
-  speed: 500
-  nextWaypointDist: 3
+  speed: 200
+  nextWaypointDist: 2
 --- !u!114 &6180655777054953894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +213,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6180655777054953896}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77f586f285b3847808d79083bd19ef1f, type: 3}
   m_Name: 

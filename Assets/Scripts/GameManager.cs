@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Enum for game states
+/// </summary>
 public enum GameState
 {
     None,
@@ -16,11 +19,12 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager instance; //Singleton
     public GameState state;
 
     private void Awake()
     {
+        //Initialize singleton
         if (GameObject.Find("GameManager") == gameObject)
         {
             instance = this;
@@ -30,7 +34,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-        state = GameState.None;
+        ChangeGameState(GameState.None);
     }
 
     private void Start()

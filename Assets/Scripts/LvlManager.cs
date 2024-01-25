@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class LvlManager : MonoBehaviour
 {
+    public static LvlManager instance;
     [SerializeField] private GameObject[] clientPrefab; //Clients prefabs array. Drag to inspector to add
     [SerializeField] private Transform spawnPosition; //Transform whre the clients spawn. Not parented
+    [SerializeField] private Transform waitPosition; //Transform where the clients wait. Not parented
+    public Transform exitPosition; //Transform where the clients exit the place. Not parented
     [SerializeField] private float spawnRate; //Time it takes for a client to spawn
     [SerializeField] private float sendRate; //Time it takes for a waitng client to be given a table
     private float currentSpawnTimer; //Keeps track of the time to spawn a client
     private float currentSendTimer; //Keeps track of the time to send a client
-    [SerializeField]List<Table> tables = new List<Table>(); //Tables on scene
-    [SerializeField]List<Client> clientsWaiting = new List<Client>(); //List to keep track of the clients
+    List<Table> tables = new List<Table>(); //Tables on scene
+    public List<Client> clientsWaiting = new List<Client>(); //List to keep track of the clients
+    public List<Client> clientsSat = new List<Client>(); //List to keep track of the clients on table but not eating
+    public List<Client> clientsEating = new List<Client>(); //List of the clients that are currently eating
     private void Awake()
     {
         InitializeLvl();
@@ -22,6 +27,7 @@ public class LvlManager : MonoBehaviour
     /// </summary>
     private void InitializeLvl()
     {
+        instance = this;
         currentSpawnTimer = spawnRate; //Sets timers
         currentSendTimer = sendRate;
         foreach (Transform child in transform) //Gets the amount of tables on scene
@@ -42,15 +48,14 @@ public class LvlManager : MonoBehaviour
     /// </summary>
     private void GenerateClients()
     {
-        currentSpawnTimer -= Time.deltaTime; 
-        if (currentSpawnTimer <= 0 && clientsWaiting.Count <= tables.Count)
+        currentSpawnTimer -= Time.deltaTime; //Substracts time to spawn
+        if (currentSpawnTimer <= 0 && clientsWaiting.Count < tables.Count) //Checks if its time to spawn and if there is room to spawn another client
         {
-            Debug.Log("Spawning Client");
-            int randomIndex = Random.Range(0, clientPrefab.Length);
-            Client newClient = Instantiate(clientPrefab[randomIndex], spawnPosition.position, Quaternion.identity).GetComponent<Client>();
-            newClient.SetTarget(spawnPosition.position + new Vector3(0, 5,0));
-            clientsWaiting.Add(newClient);
-            currentSpawnTimer = spawnRate;
+            int randomIndex = Random.Range(0, clientPrefab.Length); //Selects a client to spawn from the prefab array
+            Client newClient = Instantiate(clientPrefab[randomIndex], spawnPosition.position, Quaternion.identity).GetComponent<Client>(); //Spawns client at given location
+            newClient.UpdatePath(waitPosition.position + new Vector3(0, - 1 * (clientsWaiting.Count - 1))); //Sets target to wait on position and makes a line of them
+            newClient.SetState(ClientState.WAITING); //Sets waiting state
+            currentSpawnTimer = spawnRate; //Resets timer
         }
     }
 
@@ -59,24 +64,35 @@ public class LvlManager : MonoBehaviour
     /// </summary>
     private void SendClients()
     {
-        currentSendTimer -= Time.deltaTime;
-        if (clientsWaiting.Count > 0)
+        currentSendTimer -= Time.deltaTime; //Substracts time
+        if (clientsWaiting.Count > 0) //Checks if there are clients waiting
         {
-            if (currentSendTimer <= 0)
+            if (currentSendTimer <= 0) //Checks if its time to give a client a table
             {
-                foreach (Table table in tables)
+                foreach (Table table in tables) //Look for each of the tables
                 {
                     if (table != null)
                     {
-                        if (!table.isOccupied())
+                        if (!table.isOccupied()) //Get the first unnocupied one
                         {
-                            Debug.Log("Sending Client");
-                            Client clientToSit = clientsWaiting[0];
-                            int randomSit = Random.Range(0, table.Sits().Count);
-                            clientToSit.SetTarget(table.Sits()[randomSit].position);
-                            clientsWaiting.Remove(clientToSit);
-                            table.Occupy();
-                            currentSendTimer = sendRate;
+                            Client clientToSit = clientsWaiting[0]; //Gets the first one on queue
+                            foreach (var sit in table.Sits()) //Look for the first available sit on the table
+                            {
+                                if (sit.Value == false) //If its available
+                                {
+                                    clientToSit.UpdatePath(sit.Key.position); //Send client to that sit
+                                    table.Sits()[sit.Key] = true; //Mark sit as filled
+                                    break;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                            clientToSit.SetState(ClientState.SAT); //Set sitting state
+                            clientToSit.SetTable(table);
+                            table.Occupy(); //Occupies the table
+                            currentSendTimer = sendRate; //Resets timer
                             break;
                         }
                     }

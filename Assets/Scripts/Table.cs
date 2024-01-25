@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Table : MonoBehaviour
 {
     private bool occupied; // Tracks if the table is occupied
-    private List<Transform> sits = new List<Transform>(); //The amount of sits the table has
+    private Dictionary<Transform, bool> sits = new Dictionary<Transform, bool>(); //The amount of sits the table has, and if they are occupied
 
 
     private void Awake()
@@ -14,13 +15,13 @@ public class Table : MonoBehaviour
     }
 
     /// <summary>
-    /// Adds sits to alist to track their position
+    /// Adds sits to a list to track their position and occupied status
     /// </summary>
     private void AddSits()
     {
         foreach (Transform child in transform)
         {
-            sits.Add(child);
+            sits.Add(child, false);
         }
     }
 
@@ -34,7 +35,12 @@ public class Table : MonoBehaviour
         occupied = true;
     }
 
-    public List<Transform> Sits() //Tracks sits list
+    public void Unoccupy()
+    {
+        occupied = false;
+    }
+
+    public Dictionary<Transform, bool> Sits() //Tracks sits list
     {
         return sits;
     }
