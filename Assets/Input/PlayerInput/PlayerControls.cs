@@ -44,6 +44,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PickUpFood"",
+                    ""type"": ""Button"",
+                    ""id"": ""79bd8ed7-0f7b-4362-82c9-7fd026896ce6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +121,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""DeliverFood"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d30c733d-94ae-4f88-8d69-894aa0d32e49"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickUpFood"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +142,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
         m_Gameplay_DeliverFood = m_Gameplay.FindAction("DeliverFood", throwIfNotFound: true);
+        m_Gameplay_PickUpFood = m_Gameplay.FindAction("PickUpFood", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,12 +206,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Movement;
     private readonly InputAction m_Gameplay_DeliverFood;
+    private readonly InputAction m_Gameplay_PickUpFood;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
         public GameplayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
         public InputAction @DeliverFood => m_Wrapper.m_Gameplay_DeliverFood;
+        public InputAction @PickUpFood => m_Wrapper.m_Gameplay_PickUpFood;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -206,6 +229,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DeliverFood.started += instance.OnDeliverFood;
             @DeliverFood.performed += instance.OnDeliverFood;
             @DeliverFood.canceled += instance.OnDeliverFood;
+            @PickUpFood.started += instance.OnPickUpFood;
+            @PickUpFood.performed += instance.OnPickUpFood;
+            @PickUpFood.canceled += instance.OnPickUpFood;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -216,6 +242,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DeliverFood.started -= instance.OnDeliverFood;
             @DeliverFood.performed -= instance.OnDeliverFood;
             @DeliverFood.canceled -= instance.OnDeliverFood;
+            @PickUpFood.started -= instance.OnPickUpFood;
+            @PickUpFood.performed -= instance.OnPickUpFood;
+            @PickUpFood.canceled -= instance.OnPickUpFood;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -237,5 +266,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnDeliverFood(InputAction.CallbackContext context);
+        void OnPickUpFood(InputAction.CallbackContext context);
     }
 }

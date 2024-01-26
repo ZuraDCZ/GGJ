@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Pathfinding;
+using UnityEngine;
 
 public enum ClientState
 {
@@ -21,17 +19,16 @@ public class Client : MonoBehaviour
     public float currentPatience;
     public float currentEatingTime;
     private Table usedTable;
+    private int selectedFood;
+    private bool orderDone = false;
 
-    public delegate void OnSat(); //Client sat event
-    public OnSat onSat;
-
-    public delegate void OnServed(); //Client served event
-    public OnServed onServed;
+    public delegate void OnOrder();
+    public OnOrder onOrder;
 
     //Movement requirements------------------------------
-    [SerializeField]private Vector3 target;
-    [SerializeField]private float speed = 200f;
-    [SerializeField]private float nextWaypointDist = 3f;
+    [SerializeField] private Vector3 target;
+    [SerializeField] private float speed = 200f;
+    [SerializeField] private float nextWaypointDist = 3f;
     Path path;
     int currentWaypoint = 0;
     bool reachedEnd = false;
@@ -49,15 +46,16 @@ public class Client : MonoBehaviour
 
     private void Start()
     {
+        //Subscribe delegates
+        onOrder += OrderDone;
+
         //Set timers
         currentPatience = patienceLvl;
         currentEatingTime = eatingTime;
-        
-        //Subscribe to delegates
-        if (onServed != null)
-        {
-            onServed += StartEating;
-        }
+
+        //Set the the ordered food ID
+        int foodAmount = FoodSpawner.instance.GetFoodLenght();
+        selectedFood = Random.Range(0, foodAmount);
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
@@ -69,13 +67,16 @@ public class Client : MonoBehaviour
 
     private void FixedUpdate()
     {
-        HandleMovement();
+        if (Vector2.Distance(transform.position, target) > 1)
+        {
+            HandleMovement();
+        }
     }
 
     private void HandleMovement()
     {
         //If there is no path, do nothing
-        if (path == null) 
+        if (path == null)
             return;
 
         //Checks if the agent reached its destination 
@@ -140,16 +141,18 @@ public class Client : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates agent state
+    /// Updates agent state on trigger
     /// </summary>
     /// <param name="newState"></param>
     public void SetState(ClientState newState)
     {
         state = newState;
 
+        ///TODO: Animation logic
+
         //Handles the start of each state
         switch (state)
-        { 
+        {
             case ClientState.NONE:
                 break;
 
@@ -172,7 +175,7 @@ public class Client : MonoBehaviour
                 {
                     LvlManager.instance.clientsWaiting.Remove(this);
                 }
-                else if(LvlManager.instance.clientsSat.Contains(this))
+                else if (LvlManager.instance.clientsSat.Contains(this))
                 {
                     LvlManager.instance.clientsSat.Remove(this);
                 }
@@ -204,13 +207,13 @@ public class Client : MonoBehaviour
     public void HandleBehaviour()
     {
         switch (state)
-        { 
+        {
             case ClientState.NONE:
                 break;
 
             case ClientState.WAITING:
                 currentPatience -= Time.deltaTime;
-                if(currentPatience <= 0)
+                if (currentPatience <= 0)
                 {
                     SetState(ClientState.DONE);
                 }
@@ -269,6 +272,21 @@ public class Client : MonoBehaviour
     public Table GetTable()
     {
         return usedTable;
+    }
+
+    public int GetOrder()
+    {
+        return selectedFood;
+    }
+
+    private void OrderDone()
+    {
+        orderDone = true;
+    }
+
+    public bool HasOrdered()
+    {
+        return orderDone;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

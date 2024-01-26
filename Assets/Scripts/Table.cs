@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
 public class Table : MonoBehaviour
 {
     private bool occupied; // Tracks if the table is occupied
-    [SerializeField]private Transform sit;
+    [SerializeField] private Transform sit;
 
     public bool isOccupied() //Checks if the table is occupied
     {

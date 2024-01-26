@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -54,7 +53,7 @@ public class LvlManager : MonoBehaviour
         {
             int randomIndex = Random.Range(0, clientPrefab.Length); //Selects a client to spawn from the prefab array
             Client newClient = Instantiate(clientPrefab[randomIndex], spawnPosition.position, Quaternion.identity).GetComponent<Client>(); //Spawns client at given location
-            newClient.SetTarget(waitPosition.position + new Vector3(0, - 1 * (clientsWaiting.Count - 1))); //Sets target to wait on position and makes a line of them
+            newClient.SetTarget(waitPosition.position + new Vector3(0, -1 * (clientsWaiting.Count - 1))); //Sets target to wait on position and makes a line of them
             newClient.SetState(ClientState.WAITING); //Sets waiting state
             currentSpawnTimer = spawnRate; //Resets timer
         }
