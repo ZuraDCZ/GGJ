@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3a60ce076eb91554eb71ddc0d306d893
+guid: 53057030c5439c944b1f12e4a6bcc989
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,190 +129,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Monstruo - sprite sheet1_0
+      name: Background - Objetos_0
       rect:
         serializedVersion: 2
-        x: 139
-        y: 946
-        width: 283
-        height: 290
+        x: 104
+        y: 746
+        width: 629
+        height: 160
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c01b49da4592b464e88bbaf9cfdd1080
-      internalID: -1476546414
+      spriteID: 9b9a98419d1aac04d92c33e2855d51fe
+      internalID: -60132219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monstruo - sprite sheet1_1
+      name: Background - Objetos_1
       rect:
         serializedVersion: 2
-        x: 429
-        y: 950
-        width: 283
-        height: 290
+        x: 102
+        y: 446
+        width: 186
+        height: 238
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08a945dece48b5e45882b817ba196f9c
-      internalID: 1143378062
+      spriteID: 31ec5f84371cf5a4686b9b2eaa72d453
+      internalID: -958216800
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monstruo - sprite sheet1_2
+      name: Background - Objetos_2
       rect:
         serializedVersion: 2
-        x: 746
-        y: 944
-        width: 283
-        height: 290
+        x: 487
+        y: 450
+        width: 180
+        height: 157
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ebe4cc1ed545a74fab73f6b1a562db7
-      internalID: -760652915
+      spriteID: 4cb00b42ee34a7d409b57dc27b6cd902
+      internalID: -1977059219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monstruo - sprite sheet1_3
+      name: Background - Objetos_3
       rect:
         serializedVersion: 2
-        x: 146
-        y: 609
-        width: 281
-        height: 290
+        x: 804
+        y: 452
+        width: 63
+        height: 129
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2127552bf96edbd43aa89111c5887262
-      internalID: 2022878198
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monstruo - sprite sheet1_4
-      rect:
-        serializedVersion: 2
-        x: 427
-        y: 610
-        width: 283
-        height: 290
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0950fc6f5dd961b4daf78c94b1bfee3f
-      internalID: 613965543
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monstruo - sprite sheet1_5
-      rect:
-        serializedVersion: 2
-        x: 741
-        y: 607
-        width: 283
-        height: 290
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8a926048d46884d41aa33e0852803fb2
-      internalID: 1998364549
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monstruo - sprite sheet1_6
-      rect:
-        serializedVersion: 2
-        x: 145
-        y: 281
-        width: 283
-        height: 290
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ddad987914cb6364e8eac8e06ff8bdb6
-      internalID: -1540584472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monstruo - sprite sheet1_7
-      rect:
-        serializedVersion: 2
-        x: 453
-        y: 279
-        width: 283
-        height: 290
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 694dd6d8dea6a294eaff0cec39a68a10
-      internalID: 1062887350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monstruo - sprite sheet1_8
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 279
-        width: 283
-        height: 290
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa2edc6d6d43c324b9d14629ae3cdf1f
-      internalID: -1926775096
+      spriteID: e2655cb3eac8bb34a80c1e4b3bc0ea9d
+      internalID: 468148313
       vertices: []
       indices: 
       edges: []
@@ -328,16 +223,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Monstruo - sprite sheet1_0: -1476546414
-      Monstruo - sprite sheet1_1: 1143378062
-      Monstruo - sprite sheet1_2: -760652915
-      Monstruo - sprite sheet1_3: 2022878198
-      Monstruo - sprite sheet1_4: 613965543
-      Monstruo - sprite sheet1_5: 1998364549
-      Monstruo - sprite sheet1_6: -1540584472
-      Monstruo - sprite sheet1_7: 1062887350
-      Monstruo - sprite sheet1_8: -1926775096
-      Monstruo - sprite sheet1_9: -1753824584
+      Background - Objetos_0: -60132219
+      Background - Objetos_1: -958216800
+      Background - Objetos_2: -1977059219
+      Background - Objetos_3: 468148313
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3a60ce076eb91554eb71ddc0d306d893
+guid: ca812aef3beee9343a328c9b5bfb724d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Monstruo - sprite sheet1_0
+      name: Comediante sprite sheet_0
       rect:
         serializedVersion: 2
-        x: 139
-        y: 946
-        width: 283
-        height: 290
+        x: 70
+        y: 624
+        width: 217
+        height: 299
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c01b49da4592b464e88bbaf9cfdd1080
-      internalID: -1476546414
+      spriteID: d9ca55328980a2f449d907ee126b4a74
+      internalID: -483964028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monstruo - sprite sheet1_1
+      name: Comediante sprite sheet_1
       rect:
         serializedVersion: 2
-        x: 429
-        y: 950
-        width: 283
-        height: 290
+        x: 289
+        y: 623
+        width: 217
+        height: 299
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,20 +164,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08a945dece48b5e45882b817ba196f9c
-      internalID: 1143378062
+      spriteID: 03b49f1a45fd77b4fb17031f0227155c
+      internalID: 1014021071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monstruo - sprite sheet1_2
+      name: Comediante sprite sheet_2
       rect:
         serializedVersion: 2
-        x: 746
-        y: 944
-        width: 283
-        height: 290
+        x: 534
+        y: 618
+        width: 217
+        height: 299
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,20 +185,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ebe4cc1ed545a74fab73f6b1a562db7
-      internalID: -760652915
+      spriteID: b5e3310cea0e75540846f265194e65a8
+      internalID: 1463104968
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monstruo - sprite sheet1_3
+      name: Comediante sprite sheet_3
       rect:
         serializedVersion: 2
-        x: 146
-        y: 609
-        width: 281
-        height: 290
+        x: 790
+        y: 617
+        width: 217
+        height: 299
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,113 +206,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2127552bf96edbd43aa89111c5887262
-      internalID: 2022878198
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monstruo - sprite sheet1_4
-      rect:
-        serializedVersion: 2
-        x: 427
-        y: 610
-        width: 283
-        height: 290
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0950fc6f5dd961b4daf78c94b1bfee3f
-      internalID: 613965543
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monstruo - sprite sheet1_5
-      rect:
-        serializedVersion: 2
-        x: 741
-        y: 607
-        width: 283
-        height: 290
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8a926048d46884d41aa33e0852803fb2
-      internalID: 1998364549
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monstruo - sprite sheet1_6
-      rect:
-        serializedVersion: 2
-        x: 145
-        y: 281
-        width: 283
-        height: 290
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ddad987914cb6364e8eac8e06ff8bdb6
-      internalID: -1540584472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monstruo - sprite sheet1_7
-      rect:
-        serializedVersion: 2
-        x: 453
-        y: 279
-        width: 283
-        height: 290
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 694dd6d8dea6a294eaff0cec39a68a10
-      internalID: 1062887350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monstruo - sprite sheet1_8
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 279
-        width: 283
-        height: 290
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa2edc6d6d43c324b9d14629ae3cdf1f
-      internalID: -1926775096
+      spriteID: e5bd63c6e2e7f2d4c8a970d00e6f1b0d
+      internalID: 2122904212
       vertices: []
       indices: 
       edges: []
@@ -328,16 +223,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Monstruo - sprite sheet1_0: -1476546414
-      Monstruo - sprite sheet1_1: 1143378062
-      Monstruo - sprite sheet1_2: -760652915
-      Monstruo - sprite sheet1_3: 2022878198
-      Monstruo - sprite sheet1_4: 613965543
-      Monstruo - sprite sheet1_5: 1998364549
-      Monstruo - sprite sheet1_6: -1540584472
-      Monstruo - sprite sheet1_7: 1062887350
-      Monstruo - sprite sheet1_8: -1926775096
-      Monstruo - sprite sheet1_9: -1753824584
+      Comediante sprite sheet_0: -483964028
+      Comediante sprite sheet_1: 1014021071
+      Comediante sprite sheet_2: 1463104968
+      Comediante sprite sheet_3: 2122904212
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
