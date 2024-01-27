@@ -3,51 +3,78 @@ using UnityEngine;
 
 public class FoodSpawner : MonoBehaviour
 {
+    //Singleton
     public static FoodSpawner instance;
-    [SerializeField] Food[] foodPrefabs;
-    [SerializeField] List<Transform> foodSpawns;
-    public List<Transform> spawnsOccupied = new List<Transform>(); //Spawns that are occupied
-    [SerializeField] float spawnRate; //Time it takes for food to be spawned
-    private float currentTimer;
 
+    //Food pooling requirements
+    [SerializeField] private GameObject foodPrefab;
+    [SerializeField] int foodPoolSize;
+    [SerializeField] Sprite[] foodSprites;
+    private List<Food> foodList = new List<Food>();
+
+    //Food spawning requirements
+    [SerializeField] float spawnRate;
+    [SerializeField] List<Transform> foodSpawns;
+    private float currentTimer;
+    public List<Transform> spawnsOccupied = new List<Transform>();
     private void Awake()
     {
         instance = this;
         currentTimer = spawnRate;
+
+        //Initialize food pool
+        for (int i = 0; i < foodPoolSize; i++)
+        {
+            GameObject go = Instantiate(foodPrefab, Vector3.zero, Quaternion.identity);
+            go.SetActive(false);
+            Food newFood = go.GetComponent<Food>();
+            foodList.Add(newFood);
+        }
     }
 
     private void Update()
     {
-        if (LvlManager.instance.clientsSat.Count > 0)
+        HandleFoodSpawns();
+    }
+
+    /// <summary>
+    /// Manages all food pool update and rearranging 
+    /// </summary>
+    private void HandleFoodSpawns()
+    {
+        if (LvlManager.instance.clientsSat.Count > 0) //Check if there are clients sat down
         {
             currentTimer -= Time.deltaTime;
-            if (currentTimer < 0 && spawnsOccupied.Count <= foodSpawns.Count)
+            if (currentTimer < 0 && spawnsOccupied.Count <= foodSpawns.Count) //Check if there is enough space to spawn food
             {
                 foreach (Client client in LvlManager.instance.clientsSat)
                 {
-                    if (!client.HasOrdered())
+                    if (!client.HasOrdered()) //Look for the first client that hasnt ordered and take it
                     {
-                        foreach (Transform t in foodSpawns)
+                        foreach (Transform t in foodSpawns) //Look for the first unoccupied spawn
                         {
                             if (!spawnsOccupied.Contains(t))
                             {
-                                Instantiate(foodPrefabs[client.GetOrder()], t.position, Quaternion.identity);
-                                FillSpawn(t);
-                                client.onOrder.Invoke();
+                                foreach (Food food in foodList)
+                                {
+                                    if (!food.gameObject.activeSelf) //Look for the first deactivated food 
+                                    {
+                                        food.UpdateFoodData(foodSprites[client.GetOrder()], client.GetOrder(), t.position); //Updates its data according to the client order
+                                        food.SetSpawnTracker(t); //Sets its spawn refernece to be cleared on pickup
+                                        food.gameObject.SetActive(true);
+                                        FillSpawn(t); //Marks its spawn as occupied
+                                        client.onOrder.Invoke(); //Notifies client that the order is done
+                                        break;
+                                    }
+                                }
                                 break;
                             }
-                            continue;
                         }
                         break;
                     }
                 }
             }
         }
-    }
-
-    public int GetFoodLenght()
-    {
-        return foodPrefabs.Length;
     }
 
     public void FillSpawn(Transform foodSpawn)
@@ -57,11 +84,14 @@ public class FoodSpawner : MonoBehaviour
 
     public void EmptySpawn(Transform foodSpawn)
     {
-        spawnsOccupied.Remove(foodSpawn);
+        if (spawnsOccupied.Contains(foodSpawn))
+        {
+            spawnsOccupied.Remove(foodSpawn);
+        }
     }
 
-    public Food[] GetFoodArray()
+    public int GetSpritesLength()
     {
-        return foodPrefabs;
+        return foodSprites.Length;
     }
 }

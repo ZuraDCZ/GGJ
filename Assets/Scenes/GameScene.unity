@@ -187,8 +187,8 @@ MonoBehaviour:
   spawnPosition: {fileID: 1201124976}
   waitPosition: {fileID: 1242971709}
   exitPosition: {fileID: 1809208981}
-  spawnRate: 3
-  sendRate: 2
+  spawnRate: 4
+  sendRate: 1
   clientsWaiting: []
   clientsSat: []
   clientsEating: []
@@ -364,16 +364,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf8aad25a2d1e04797771185ba6c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodPrefabs:
-  - {fileID: 4498841806775098554, guid: f5b014dc32fca4d438123fdeacce5fa0, type: 3}
-  - {fileID: 4498841806775098554, guid: c19e4fcc7a889854bb588c8f092ed1b7, type: 3}
-  - {fileID: 4498841806775098554, guid: 806c762a77eb40841a099102d125d0f8, type: 3}
+  foodPrefab: {fileID: 616122424747053358, guid: f5b014dc32fca4d438123fdeacce5fa0, type: 3}
+  foodPoolSize: 10
+  foodSprites:
+  - {fileID: 0}
+  spawnRate: 1
   foodSpawns:
   - {fileID: 677392193}
   - {fileID: 179401660}
   - {fileID: 1852356282}
   spawnsOccupied: []
-  spawnRate: 1
 --- !u!4 &537882110
 Transform:
   m_ObjectHideFlags: 0
@@ -482,11 +482,11 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &680594014
@@ -832,8 +832,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f93a4ce10c5e2745b95c479f2e74580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxSpeed: 3
-  m_moveForce: 1
+  m_maxSpeed: 5
+  m_moveForce: 3
   maxFood: 3
   tiltForce: 10
   mainPlate: {fileID: 2132600420}

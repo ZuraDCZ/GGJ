@@ -115,8 +115,7 @@ public class PlayerController : MonoBehaviour
                         {
                             if (food.GetID() == clientServed.GetOrder()) //Find the one the client ordered
                             {
-                                food.transform.SetParent(null);
-                                ServeClient(clientServed, food);
+                                ServeClient(clientServed, food); //Serve client the ordered plate
                                 UpdateFoodTransform(); //Reorganize the food placement on the plate
                                 break;
                             }
@@ -127,13 +126,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Places food transform on table and notifies client to start eating 
+    /// </summary>
+    /// <param name="clientServed"></param>
+    /// <param name="food"></param>
     private void ServeClient(Client clientServed, Food food)
     {
+        food.transform.SetParent(null); //Clear the player as parent
         food.transform.SetPositionAndRotation(clientServed.GetTable().GetPlatePlace().position, Quaternion.identity); //Put the plate on the table
         foodList.Remove(food); //Remove from the carried food list
+        clientServed.SetFood(food); //Sets food reference to be deactivated on consumed
         clientServed.SetState(ClientState.EATING); //Notify the client to start eating
     }
 
+    /// <summary>
+    /// Handles player pickup event on input
+    /// </summary>
+    /// <param name="context"></param>
     private void PickUp(InputAction.CallbackContext context)
     {
         if (Physics2D.OverlapCircle(transform.position, 2.0f, foodLayer) && foodList.Count <= maxFood)
@@ -146,6 +156,7 @@ public class PlayerController : MonoBehaviour
                 {
                     pickedFood.gameObject.layer = 0;
                     pickedFood.transform.SetParent(transform, false);
+                    FoodSpawner.instance.EmptySpawn(pickedFood.GetSpawn());
                     foodList.Add(pickedFood);
                     UpdateFoodTransform();
                 }
@@ -153,13 +164,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Rearranges food transforms on players plate
+    /// </summary>
     private void UpdateFoodTransform()
     {
-        
         foreach (Food food in foodList)
         {
             int index = foodList.IndexOf(food);
-            food.transform.SetLocalPositionAndRotation(new Vector3(1, index, 0), Quaternion.identity);
+            food.transform.SetLocalPositionAndRotation(new Vector3(1, index * 0.25f, 0), Quaternion.identity);
         }
     }
     private void OnDrawGizmos()

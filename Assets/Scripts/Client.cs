@@ -10,7 +10,7 @@ public enum ClientState
     DONE
 }
 
-//TODO: Client refrenvce to food and disappear food
+//TODO: Client reference to food and disappear food
 
 public class Client : MonoBehaviour
 {
@@ -20,12 +20,12 @@ public class Client : MonoBehaviour
     [SerializeField] float eatingTime = 30f;
     public float currentPatience;
     public float currentEatingTime;
-
-
-    private Table usedTable;
-    private int selectedFoodIndex;
-    private Food selectedFood;
     private bool orderDone = false;
+
+    //References-----------------------------------------
+    private Table usedTable;
+    private Food selectedFood;
+    private int selectedFoodIndex;
 
     public delegate void OnOrder();
     public OnOrder onOrder;
@@ -34,13 +34,12 @@ public class Client : MonoBehaviour
     [SerializeField] Vector3 target;
     [SerializeField] float speed = 200f;
     [SerializeField] float nextWaypointDist = 3f;
-    Path path;
-    int currentWaypoint = 0;
-    bool reachedEnd = false;
+    private Path path;
+    private int currentWaypoint = 0;
+    private bool reachedEnd = false;
 
     Seeker seeker;
     Rigidbody2D rb;
-    //--------------------------------------------------------
 
     private void Awake()
     {
@@ -59,10 +58,10 @@ public class Client : MonoBehaviour
         currentEatingTime = eatingTime;
 
         //Set the the ordered food ID
-        int foodAmount = FoodSpawner.instance.GetFoodLenght();
+        int foodAmount = FoodSpawner.instance.GetSpritesLength();
         selectedFoodIndex = Random.Range(0, foodAmount);
-        selectedFood = FoodSpawner.instance.GetFoodArray()[selectedFoodIndex];
 
+        //Subscribe to path updating. Needed to move
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 
@@ -199,15 +198,6 @@ public class Client : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns agent state
-    /// </summary>
-    /// <returns></returns>
-    public ClientState GetState()
-    {
-        return state;
-    }
-
-    /// <summary>
     /// Handles agent states during Update
     /// </summary>
     public void HandleBehaviour()
@@ -237,7 +227,7 @@ public class Client : MonoBehaviour
                 currentEatingTime -= Time.deltaTime;
                 if (currentEatingTime <= 0)
                 {
-                    //Consume food(); TODO: Disappearr food from table
+                    selectedFood.gameObject.SetActive(false);
                     SetState(ClientState.DONE);
                 }
                 break;
@@ -252,14 +242,6 @@ public class Client : MonoBehaviour
     }
 
     /// <summary>
-    /// Notifies the client to start eating
-    /// </summary>
-    public void StartEating()
-    {
-        SetState(ClientState.EATING);
-    }
-
-    /// <summary>
     /// Notifies the client to leave through the exit
     /// </summary>
     private void Leave()
@@ -269,6 +251,11 @@ public class Client : MonoBehaviour
             usedTable.Unoccupy();
         }
         SetTarget(LvlManager.instance.exitPosition.position);
+    }
+
+    public ClientState GetState()
+    {
+        return state;
     }
 
     public void SetTable(Table table)
@@ -284,6 +271,11 @@ public class Client : MonoBehaviour
     public int GetOrder()
     {
         return selectedFoodIndex;
+    }
+
+    public void SetFood(Food food)
+    {
+        selectedFood = food;
     }
 
     private void OrderDone()
