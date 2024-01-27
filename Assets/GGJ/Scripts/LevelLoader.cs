@@ -6,12 +6,28 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     [SerializeField] Animator m_transition;
+    [SerializeField] Animator m_optionsPanel;
     [SerializeField] float m_transitionTime = 1f;
 
     public void LoadMainGameScene()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     } 
+
+    public void LoadOptions()
+    {
+        m_optionsPanel.SetBool("Enter", true);
+    }
+
+    public void ExitOptions()
+    {
+        m_optionsPanel.SetBool("Enter", false);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 
     IEnumerator LoadLevel(int p_levelIndex)
     {
