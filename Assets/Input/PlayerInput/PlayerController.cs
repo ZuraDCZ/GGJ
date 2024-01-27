@@ -1,16 +1,19 @@
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     //Properties
-    [SerializeField] private float m_maxSpeed;
-    [SerializeField] private float m_moveForce;
-    [SerializeField] private float tiltForce = 40f;
-    [SerializeField] private Transform mainPlate;
-    [SerializeField] private LayerMask clientLayer;
-    private List<Food> foodList = new List<Food>();
+    [SerializeField] float m_maxSpeed;
+    [SerializeField] float m_moveForce;
+    [SerializeField] int maxFood = 3;
+    [SerializeField] float tiltForce = 40f;
+    [SerializeField] Transform mainPlate;
+    [SerializeField] LayerMask clientLayer, foodLayer;
+    public List<Food> foodList = new List<Food>();
 
     //Components
     private Rigidbody2D rb;
@@ -24,7 +27,9 @@ public class PlayerController : MonoBehaviour
 
         playerControls = new PlayerControls();
         playerControls.Gameplay.Enable(); //Enable gameplay control scheme
-        playerControls.Gameplay.PickUpFood.performed += PickUp; //Subscribe to deliver action
+
+        //Subscribe to player actions
+        playerControls.Gameplay.PickUpFood.performed += PickUp; 
         playerControls.Gameplay.DeliverFood.performed += Deliver;
     }
 
@@ -58,7 +63,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Handles players plate tit on move
     /// </summary>
     private void TiltPlate()
     {
@@ -96,33 +101,66 @@ public class PlayerController : MonoBehaviour
 
     private void Deliver(InputAction.CallbackContext context)
     {
-        GameObject c = Physics2D.OverlapCircleAll(transform.position, 2.0f, clientLayer)[0].gameObject;
-        if (c != null)
+        if (Physics2D.OverlapCircle(transform.position, 2.0f, clientLayer)) //Find a clients
         {
-            Client clientServed = c.GetComponent<Client>();
-            if (clientServed != null)
+            GameObject c = Physics2D.OverlapCircleAll(transform.position, 2.0f, clientLayer)[0].gameObject; //Get the first one 
+            if (c != null)
             {
-                if (clientServed.GetState() == ClientState.SAT)
+                Client clientServed = c.GetComponent<Client>();
+                if (clientServed != null)
                 {
-                    foreach (Food food in foodList)
+                    if (clientServed.GetState() == ClientState.SAT) ///Check if the client is sat on a table
                     {
-                        if (food.GetID() == clientServed.GetOrder())
+                        foreach (Food food in foodList) //Look through each of the carried food
                         {
-                            Debug.Log("ServingClient");
-                            clientServed.SetState(ClientState.EATING);
-                            foodList.Remove(food);
-                            break;
+                            if (food.GetID() == clientServed.GetOrder()) //Find the one the client ordered
+                            {
+                                food.transform.SetParent(null);
+                                ServeClient(clientServed, food);
+                                UpdateFoodTransform(); //Reorganize the food placement on the plate
+                                break;
+                            }
                         }
                     }
                 }
-            }
+            } 
         }
+    }
 
+    private void ServeClient(Client clientServed, Food food)
+    {
+        food.transform.SetPositionAndRotation(clientServed.GetTable().GetPlatePlace().position, Quaternion.identity); //Put the plate on the table
+        foodList.Remove(food); //Remove from the carried food list
+        clientServed.SetState(ClientState.EATING); //Notify the client to start eating
     }
 
     private void PickUp(InputAction.CallbackContext context)
     {
+        if (Physics2D.OverlapCircle(transform.position, 2.0f, foodLayer) && foodList.Count <= maxFood)
+        {
+            GameObject c = Physics2D.OverlapCircleAll(transform.position, 2.0f, foodLayer)[0].gameObject;
+            if (c != null)
+            {
+                Food pickedFood = c.GetComponent<Food>();
+                if (pickedFood != null && !foodList.Contains(pickedFood))
+                {
+                    pickedFood.gameObject.layer = 0;
+                    pickedFood.transform.SetParent(transform, false);
+                    foodList.Add(pickedFood);
+                    UpdateFoodTransform();
+                }
+            }
+        }
+    }
 
+    private void UpdateFoodTransform()
+    {
+        
+        foreach (Food food in foodList)
+        {
+            int index = foodList.IndexOf(food);
+            food.transform.SetLocalPositionAndRotation(new Vector3(1, index, 0), Quaternion.identity);
+        }
     }
     private void OnDrawGizmos()
     {

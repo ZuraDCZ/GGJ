@@ -5,12 +5,12 @@ using UnityEngine;
 public class LvlManager : MonoBehaviour
 {
     public static LvlManager instance;
-    [SerializeField] private GameObject[] clientPrefab; //Clients prefabs array. Drag to inspector to add
-    [SerializeField] private Transform spawnPosition; //Transform whre the clients spawn. Not parented
-    [SerializeField] private Transform waitPosition; //Transform where the clients wait. Not parented
+    [SerializeField] GameObject[] clientPrefab; //Clients prefabs array. Drag to inspector to add
+    [SerializeField] Transform spawnPosition; //Transform whre the clients spawn. Not parented
+    [SerializeField] Transform waitPosition; //Transform where the clients wait. Not parented
     public Transform exitPosition; //Transform where the clients exit the place. Not parented
-    [SerializeField] private float spawnRate; //Time it takes for a client to spawn
-    [SerializeField] private float sendRate; //Time it takes for a waitng client to be given a table
+    [SerializeField] float spawnRate; //Time it takes for a client to spawn
+    [SerializeField] float sendRate; //Time it takes for a waitng client to be given a table
     private float currentSpawnTimer; //Keeps track of the time to spawn a client
     private float currentSendTimer; //Keeps track of the time to send a client
     List<Table> tables = new List<Table>(); //Tables on scene

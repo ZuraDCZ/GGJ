@@ -4,10 +4,10 @@ using UnityEngine;
 public class FoodSpawner : MonoBehaviour
 {
     public static FoodSpawner instance;
-    [SerializeField] private Food[] foodPrefabs;
-    [SerializeField] private List<Transform> foodSpawns;
+    [SerializeField] Food[] foodPrefabs;
+    [SerializeField] List<Transform> foodSpawns;
     public List<Transform> spawnsOccupied = new List<Transform>(); //Spawns that are occupied
-    [SerializeField] private float spawnRate; //Time it takes for food to be spawned
+    [SerializeField] float spawnRate; //Time it takes for food to be spawned
     private float currentTimer;
 
     private void Awake()
@@ -31,12 +31,12 @@ public class FoodSpawner : MonoBehaviour
                         {
                             if (!spawnsOccupied.Contains(t))
                             {
-                                Debug.Log("SpawningFood");
                                 Instantiate(foodPrefabs[client.GetOrder()], t.position, Quaternion.identity);
                                 FillSpawn(t);
                                 client.onOrder.Invoke();
                                 break;
                             }
+                            continue;
                         }
                         break;
                     }
@@ -58,5 +58,10 @@ public class FoodSpawner : MonoBehaviour
     public void EmptySpawn(Transform foodSpawn)
     {
         spawnsOccupied.Remove(foodSpawn);
+    }
+
+    public Food[] GetFoodArray()
+    {
+        return foodPrefabs;
     }
 }

@@ -10,25 +10,30 @@ public enum ClientState
     DONE
 }
 
+//TODO: Client refrenvce to food and disappear food
+
 public class Client : MonoBehaviour
 {
     //Properties-----------------------------------------
     public ClientState state;
-    [SerializeField] private float patienceLvl = 100f;
-    [SerializeField] private float eatingTime = 30f;
+    [SerializeField] float patienceLvl = 100f;
+    [SerializeField] float eatingTime = 30f;
     public float currentPatience;
     public float currentEatingTime;
+
+
     private Table usedTable;
-    private int selectedFood;
+    private int selectedFoodIndex;
+    private Food selectedFood;
     private bool orderDone = false;
 
     public delegate void OnOrder();
     public OnOrder onOrder;
 
     //Movement requirements------------------------------
-    [SerializeField] private Vector3 target;
-    [SerializeField] private float speed = 200f;
-    [SerializeField] private float nextWaypointDist = 3f;
+    [SerializeField] Vector3 target;
+    [SerializeField] float speed = 200f;
+    [SerializeField] float nextWaypointDist = 3f;
     Path path;
     int currentWaypoint = 0;
     bool reachedEnd = false;
@@ -55,7 +60,8 @@ public class Client : MonoBehaviour
 
         //Set the the ordered food ID
         int foodAmount = FoodSpawner.instance.GetFoodLenght();
-        selectedFood = Random.Range(0, foodAmount);
+        selectedFoodIndex = Random.Range(0, foodAmount);
+        selectedFood = FoodSpawner.instance.GetFoodArray()[selectedFoodIndex];
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
@@ -231,6 +237,7 @@ public class Client : MonoBehaviour
                 currentEatingTime -= Time.deltaTime;
                 if (currentEatingTime <= 0)
                 {
+                    //Consume food(); TODO: Disappearr food from table
                     SetState(ClientState.DONE);
                 }
                 break;
@@ -276,7 +283,7 @@ public class Client : MonoBehaviour
 
     public int GetOrder()
     {
-        return selectedFood;
+        return selectedFoodIndex;
     }
 
     private void OrderDone()

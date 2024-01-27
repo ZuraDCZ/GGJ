@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    [SerializeField] private int id;
+    [SerializeField] int id;
 
     public int GetID()
     {

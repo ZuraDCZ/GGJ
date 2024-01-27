@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodPrefabs:
-  - {fileID: 4498841806775098554, guid: 49e51be41a3bc934db28554701087747, type: 3}
+  - {fileID: 4498841806775098554, guid: f5b014dc32fca4d438123fdeacce5fa0, type: 3}
   - {fileID: 4498841806775098554, guid: c19e4fcc7a889854bb588c8f092ed1b7, type: 3}
   - {fileID: 4498841806775098554, guid: 806c762a77eb40841a099102d125d0f8, type: 3}
   foodSpawns:
@@ -834,11 +834,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxSpeed: 3
   m_moveForce: 1
+  maxFood: 3
   tiltForce: 10
   mainPlate: {fileID: 2132600420}
   clientLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  foodLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  foodList: []
 --- !u!50 &1599501557
 Rigidbody2D:
   serializedVersion: 4
@@ -1161,7 +1166,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2132600419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.919, y: 0.156, z: 0}
+  m_LocalPosition: {x: 1, y: 0.15, z: 0}
   m_LocalScale: {x: 0.75, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
