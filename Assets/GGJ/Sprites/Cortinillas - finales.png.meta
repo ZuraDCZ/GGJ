@@ -132,10 +132,10 @@ TextureImporter:
       name: Cortinillas - finales_0
       rect:
         serializedVersion: 2
-        x: 145
-        y: 804
-        width: 262
-        height: 374
+        x: 506
+        y: 2194
+        width: 1865
+        height: 2663
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4288c4dace11e3b4d8bf1b78b6f32caf
-      internalID: 874230202
+      spriteID: 21bcef72ed4c1dc4cb19fc122a8159d0
+      internalID: 229730458
       vertices: []
       indices: 
       edges: []
@@ -153,10 +153,10 @@ TextureImporter:
       name: Cortinillas - finales_1
       rect:
         serializedVersion: 2
-        x: 479
-        y: 793
-        width: 226
-        height: 384
+        x: 2889
+        y: 2118
+        width: 1603
+        height: 2728
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,8 +164,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5da3642571178ef4984d46fa7f48ea00
-      internalID: -1672539348
+      spriteID: ee043aa3c537b7a48bd1566ee04ecb83
+      internalID: -666190276
       vertices: []
       indices: 
       edges: []
@@ -174,10 +174,10 @@ TextureImporter:
       name: Cortinillas - finales_2
       rect:
         serializedVersion: 2
-        x: 780
-        y: 784
-        width: 171
-        height: 394
+        x: 5025
+        y: 2049
+        width: 1222
+        height: 2804
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,8 +185,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de8eb54e045bc5e4da5597fff40ba14b
-      internalID: -976393865
+      spriteID: 18c54c931c29a1c40ac0e199a791a5d4
+      internalID: -1211093578
       vertices: []
       indices: 
       edges: []
@@ -195,10 +195,10 @@ TextureImporter:
       name: Cortinillas - finales_3
       rect:
         serializedVersion: 2
-        x: 98
-        y: 665
-        width: 490
-        height: 104
+        x: 173
+        y: 1208
+        width: 3487
+        height: 735
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,8 +206,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9b825cf1bfb76f4892ff72fe9adb93c
-      internalID: -1830885491
+      spriteID: 9028e6bef841b1f44a2ee8323ad8eb76
+      internalID: 1492233021
       vertices: []
       indices: 
       edges: []
@@ -216,10 +216,10 @@ TextureImporter:
       name: Cortinillas - finales_4
       rect:
         serializedVersion: 2
-        x: 603
-        y: 643
-        width: 379
-        height: 103
+        x: 3772
+        y: 1044
+        width: 2696
+        height: 737
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,8 +227,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22afa3506f71a2e44bf118fc661460a7
-      internalID: -689427666
+      spriteID: 1b0968c1187762a43ad066f3c4400b31
+      internalID: -1374356881
       vertices: []
       indices: 
       edges: []
@@ -237,10 +237,10 @@ TextureImporter:
       name: Cortinillas - finales_5
       rect:
         serializedVersion: 2
-        x: 107
-        y: 523
-        width: 471
-        height: 113
+        x: 236
+        y: 196
+        width: 3351
+        height: 798
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,8 +248,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1918424e7f35a434eb906048d0bbefe8
-      internalID: 108182753
+      spriteID: e2769be170f1d3341bf3f66145d02e95
+      internalID: 2108781672
       vertices: []
       indices: 
       edges: []
@@ -258,10 +258,10 @@ TextureImporter:
       name: Cortinillas - finales_6
       rect:
         serializedVersion: 2
-        x: 621
-        y: 527
-        width: 372
-        height: 90
+        x: 3896
+        y: 222
+        width: 2648
+        height: 640
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -269,8 +269,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e42c3701a7e043e45bd0ca554ce9281d
-      internalID: 2055762129
+      spriteID: 020132214a4fe334e9bc691b77a71bf3
+      internalID: 1131964885
       vertices: []
       indices: 
       edges: []
@@ -286,13 +286,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cortinillas - finales_0: 874230202
-      Cortinillas - finales_1: -1672539348
-      Cortinillas - finales_2: -976393865
-      Cortinillas - finales_3: -1830885491
-      Cortinillas - finales_4: -689427666
-      Cortinillas - finales_5: 108182753
-      Cortinillas - finales_6: 2055762129
+      Cortinillas - finales_0: 229730458
+      Cortinillas - finales_1: -666190276
+      Cortinillas - finales_2: -1211093578
+      Cortinillas - finales_3: 1492233021
+      Cortinillas - finales_4: -1374356881
+      Cortinillas - finales_5: 2108781672
+      Cortinillas - finales_6: 1131964885
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
