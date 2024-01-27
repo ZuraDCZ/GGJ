@@ -11,14 +11,13 @@ public enum GameState
     LoadGame,
     Playing,
     Pause,
-    Victory,
     GameOver
 }
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance; //Singleton
-    public GameState state;
+    private GameState state;
 
     private void Awake()
     {
@@ -37,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        ChangeGameState(GameState.MainMenu);
+        ChangeGameState(GameState.LoadMainMenu);
     }
 
     public void ChangeGameState(GameState newState)
@@ -49,21 +48,34 @@ public class GameManager : MonoBehaviour
             case GameState.None:
                 break;
             case GameState.LoadMainMenu:
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+                ChangeGameState(GameState.MainMenu);
                 break;
             case GameState.MainMenu:
                 break;
             case GameState.LoadGame:
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+                ChangeGameState(GameState.Playing);
                 break;
             case GameState.Playing:
                 break;
             case GameState.Pause:
                 break;
-            case GameState.Victory:
-                break;
             case GameState.GameOver:
+                OnGameOver();
                 break;
             default:
                 break;
         }
+    }
+
+    public GameState GetGameState()
+    {
+        return state;
+    }
+
+    private void OnGameOver()
+    {
+
     }
 }

@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float m_maxSpeed;
     [SerializeField] float m_moveForce;
     [SerializeField] int maxFood = 3;
-    [SerializeField] float tiltForce = 40f;
     [SerializeField] Transform mainPlate;
     [SerializeField] LayerMask clientLayer, foodLayer;
     public List<Food> foodList = new List<Food>();
@@ -31,17 +30,23 @@ public class PlayerController : MonoBehaviour
         //Subscribe to player actions
         playerControls.Gameplay.PickUpFood.performed += PickUp; 
         playerControls.Gameplay.DeliverFood.performed += Deliver;
+        playerControls.Gameplay.PauseGame.performed += PauseGame;
     }
 
     private void Update()
     {
-        CheckMovement();
-        TiltPlate();
+        if (GameManager.instance.GetGameState() == GameState.Playing)
+        {
+            CheckMovement(); 
+        }
     }
 
     private void FixedUpdate()
     {
-        Move();
+        if (GameManager.instance.GetGameState() == GameState.Playing)
+        {
+            Move();
+        }
     }
 
     /// <summary>
@@ -63,27 +68,6 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Handles players plate tit on move
-    /// </summary>
-    private void TiltPlate()
-    {
-        Vector2 inputVector = playerControls.Gameplay.Movement.ReadValue<Vector2>();
-        Vector3 tiltDirection = new Vector3(0, 0, -inputVector.x);
-        if (CheckMovement())
-        {
-
-            Vector3 TiltVector = tiltDirection * tiltForce * Time.deltaTime;
-            mainPlate.Rotate(TiltVector);
-        }
-        else if (!CheckMovement())
-        {
-            Vector3 currentRotation = new Vector3(mainPlate.rotation.x, mainPlate.rotation.y, 0);
-            Vector3 resetRotation = Vector3.Lerp(currentRotation, Vector3.zero, 0.5f);
-            mainPlate.Rotate(resetRotation);
-        }
-    }
-
-    /// <summary>
     /// Check if the player is moving
     /// </summary>
     private bool CheckMovement()
@@ -99,6 +83,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles delivery action
+    /// </summary>
+    /// <param name="context"></param>
     private void Deliver(InputAction.CallbackContext context)
     {
         if (Physics2D.OverlapCircle(transform.position, 2.0f, clientLayer)) //Find a clients
@@ -137,6 +125,7 @@ public class PlayerController : MonoBehaviour
         food.transform.SetPositionAndRotation(clientServed.GetTable().GetPlatePlace().position, Quaternion.identity); //Put the plate on the table
         foodList.Remove(food); //Remove from the carried food list
         clientServed.SetFood(food); //Sets food reference to be deactivated on consumed
+        clientServed.SetServed(); //Set as fullfilled
         clientServed.SetState(ClientState.EATING); //Notify the client to start eating
     }
 
@@ -177,9 +166,9 @@ public class PlayerController : MonoBehaviour
             food.transform.SetLocalPositionAndRotation(new Vector3(1, index * 0.25f, 0), Quaternion.identity);
         }
     }
-    private void OnDrawGizmos()
+
+    private void PauseGame(InputAction.CallbackContext context)
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, 2.0f);
+        GameManager.instance.ChangeGameState(GameState.Pause);
     }
 }

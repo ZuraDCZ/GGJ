@@ -17,6 +17,11 @@ public class LvlManager : MonoBehaviour
     public List<Client> clientsWaiting = new List<Client>(); //List to keep track of the clients
     public List<Client> clientsSat = new List<Client>(); //List to keep track of the clients on table but not eating
     public List<Client> clientsEating = new List<Client>(); //List of the clients that are currently eating
+
+    //Player score values
+    private float score;
+    [SerializeField]int maxLifes = 5;
+    private int currentLifes;
     private void Awake()
     {
         InitializeLvl();
@@ -28,6 +33,7 @@ public class LvlManager : MonoBehaviour
     private void InitializeLvl()
     {
         instance = this;
+        currentLifes = maxLifes;
         currentSpawnTimer = spawnRate; //Sets timers
         currentSendTimer = sendRate;
         foreach (Transform child in transform) //Gets the amount of tables on scene
@@ -39,8 +45,11 @@ public class LvlManager : MonoBehaviour
 
     private void Update()
     {
-        GenerateClients();
-        SendClients();
+        if (GameManager.instance.GetGameState() == GameState.Playing)
+        {
+            GenerateClients();
+            SendClients(); 
+        }
     }
 
     /// <summary>
@@ -86,6 +95,20 @@ public class LvlManager : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    public void AddScore(Client clientServed)
+    {
+        score += (5 * (clientServed.GetPatience() / 100));
+    }
+
+    public void LoseLife()
+    {
+        currentLifes--;
+        if (currentLifes <= 0)
+        {
+            GameManager.instance.ChangeGameState(GameState.GameOver);
         }
     }
 }

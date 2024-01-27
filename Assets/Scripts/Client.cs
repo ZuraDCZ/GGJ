@@ -19,6 +19,7 @@ public class Client : MonoBehaviour
     public float currentPatience;
     public float currentEatingTime;
     private bool orderDone = false;
+    private bool served = false;
 
     //References-----------------------------------------
     private Table usedTable;
@@ -70,9 +71,12 @@ public class Client : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Vector2.Distance(transform.position, target) > 1)
+        if (GameManager.instance.GetGameState() == GameState.Playing)
         {
-            HandleMovement();
+            if (Vector2.Distance(transform.position, target) > 1)
+            {
+                HandleMovement();
+            }
         }
     }
 
@@ -227,6 +231,7 @@ public class Client : MonoBehaviour
                 {
                     selectedFood.gameObject.SetActive(false);
                     SetState(ClientState.DONE);
+                    LvlManager.instance.AddScore(this);
                 }
                 break;
 
@@ -240,7 +245,7 @@ public class Client : MonoBehaviour
     }
 
     /// <summary>
-    /// Notifies the client to leave through the exit
+    /// Notifies the client to leave through the exit and updates score depending on served state
     /// </summary>
     private void Leave()
     {
@@ -248,6 +253,16 @@ public class Client : MonoBehaviour
         {
             usedTable.Unoccupy();
         }
+
+        if (Served())
+        {
+            LvlManager.instance.AddScore(this);
+        }
+        else if (!Served())
+        {
+            LvlManager.instance.LoseLife();
+        }
+
         SetTarget(LvlManager.instance.exitPosition.position);
     }
 
@@ -284,6 +299,21 @@ public class Client : MonoBehaviour
     public bool HasOrdered()
     {
         return orderDone;
+    }
+
+    public float GetPatience()
+    {
+        return currentPatience;
+    }
+
+    public void SetServed()
+    {
+        served = true;
+    }
+
+    public bool Served()
+    {
+        return served;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

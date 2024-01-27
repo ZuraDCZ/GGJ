@@ -34,7 +34,10 @@ public class FoodSpawner : MonoBehaviour
 
     private void Update()
     {
-        HandleFoodSpawns();
+        if (GameManager.instance.GetGameState() == GameState.Playing)
+        {
+            HandleFoodSpawns();
+        }
     }
 
     /// <summary>
@@ -77,7 +80,7 @@ public class FoodSpawner : MonoBehaviour
         }
     }
 
-    public void FillSpawn(Transform foodSpawn)
+    private void FillSpawn(Transform foodSpawn)
     {
         spawnsOccupied.Add(foodSpawn);
     }
