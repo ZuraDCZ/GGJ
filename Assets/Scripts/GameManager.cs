@@ -31,12 +31,13 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-        ChangeGameState(GameState.None);
+        //ChangeGameState(GameState.None);
     }
 
     private void Start()
     {
-        ChangeGameState(GameState.LoadMainMenu);
+        //ChangeGameState(GameState.LoadMainMenu);
+        ChangeGameState(GameState.Playing);
     }
 
     public void ChangeGameState(GameState newState)

@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int maxFood = 3;
     [SerializeField] LayerMask clientLayer, foodLayer;
 
-    [Header("Sound requirements")]
-    [SerializeField] AudioClip footestepsAudioClip;
-    [SerializeField] float footstepTimer = 0;
+    //[Header("Sound requirements")]
+    //[SerializeField] AudioClip footestepsAudioClip;
+    //[SerializeField] float footstepTimer = 0;
     public List<Food> foodList = new List<Food>();
 
     //Components
