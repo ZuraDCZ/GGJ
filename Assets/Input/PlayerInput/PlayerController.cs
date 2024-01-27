@@ -146,14 +146,16 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"></param>
     private void PickUp(InputAction.CallbackContext context)
     {
-        if (Physics2D.OverlapCircle(transform.position, 2.0f, foodLayer) && foodList.Count <= maxFood)
+        if (Physics2D.OverlapCircle(transform.position, 2.0f, foodLayer) && foodList.Count < maxFood)
         {
+            Debug.Log("Found food");
             GameObject c = Physics2D.OverlapCircleAll(transform.position, 2.0f, foodLayer)[0].gameObject;
             if (c != null)
             {
                 Food pickedFood = c.GetComponent<Food>();
                 if (pickedFood != null && !foodList.Contains(pickedFood))
                 {
+                    Debug.Log("Picking up food");
                     pickedFood.gameObject.layer = 0;
                     pickedFood.transform.SetParent(transform, false);
                     FoodSpawner.instance.EmptySpawn(pickedFood.GetSpawn());

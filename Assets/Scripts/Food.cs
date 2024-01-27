@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
+    [SerializeField] LayerMask foodLayer;
     [SerializeField] int id;
     private Sprite sprite;
     private Transform spawnTracker;
@@ -24,11 +25,12 @@ public class Food : MonoBehaviour
         }
         id = newID;
         transform.position = spawnRelocation;
+        gameObject.layer = LayerMask.NameToLayer("Food");
     }
 
     public void SetSpawnTracker(Transform spawnTransform)
     {
-        spawnTracker = transform;
+        spawnTracker = spawnTransform;
     }
     public Transform GetSpawn()
     {

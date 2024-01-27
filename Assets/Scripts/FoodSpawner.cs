@@ -60,7 +60,7 @@ public class FoodSpawner : MonoBehaviour
                                     if (!food.gameObject.activeSelf) //Look for the first deactivated food 
                                     {
                                         food.UpdateFoodData(foodSprites[client.GetOrder()], client.GetOrder(), t.position); //Updates its data according to the client order
-                                        food.SetSpawnTracker(t); //Sets its spawn refernece to be cleared on pickup
+                                        food.SetSpawnTracker(t); //Sets its spawn reference to be cleared on pickup
                                         food.gameObject.SetActive(true);
                                         FillSpawn(t); //Marks its spawn as occupied
                                         client.onOrder.Invoke(); //Notifies client that the order is done

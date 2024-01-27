@@ -10,8 +10,6 @@ public enum ClientState
     DONE
 }
 
-//TODO: Client reference to food and disappear food
-
 public class Client : MonoBehaviour
 {
     //Properties-----------------------------------------
