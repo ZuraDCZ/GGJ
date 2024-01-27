@@ -1,21 +1,25 @@
 using System.Collections.Generic;
-using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    //Properties
+    [Header("Movement variables")]
     [SerializeField] float m_maxSpeed;
     [SerializeField] float m_moveForce;
+
+    [Header("Food delivery Variables")]
     [SerializeField] int maxFood = 3;
-    [SerializeField] Transform mainPlate;
     [SerializeField] LayerMask clientLayer, foodLayer;
+
+    [Header("Sound requirements")]
+    [SerializeField] AudioClip footestepsAudioClip;
+    [SerializeField] float footstepTimer = 0;
     public List<Food> foodList = new List<Food>();
 
     //Components
     private Rigidbody2D rb;
+    private AudioSource footestepsAudioSource;
     private PlayerControls playerControls;
 
 
@@ -23,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        footestepsAudioSource = GetComponent<AudioSource>();
         playerControls = new PlayerControls();
         playerControls.Gameplay.Enable(); //Enable gameplay control scheme
 
