@@ -25,6 +25,7 @@ public class Client : MonoBehaviour
     private Table usedTable;
     private Food selectedFood;
     private int selectedFoodIndex;
+    [SerializeField] ParticleSystem ps;
 
     public delegate void OnOrder();
     public OnOrder onOrder;
@@ -39,11 +40,14 @@ public class Client : MonoBehaviour
 
     Seeker seeker;
     Rigidbody2D rb;
+    Animator animator;
 
     private void Awake()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        ps = GetComponent<ParticleSystem>();
         SetState(ClientState.NONE);
     }
 
@@ -71,12 +75,22 @@ public class Client : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.instance.GetGameState() == GameState.Playing)
+        //if (GameManager.instance.GetGameState() == GameState.Playing)
+        //{
+
+        //}
+        if (Vector2.Distance(transform.position, target) > 1)
         {
-            if (Vector2.Distance(transform.position, target) > 1)
-            {
-                HandleMovement();
-            }
+            HandleMovement();
+        }
+        //Animation logic
+        if (rb.velocity.sqrMagnitude != 0)
+        {
+            animator.SetBool("Moving", true);
+        }
+        else
+        {
+            animator.SetBool("Moving", false);
         }
     }
 
@@ -179,19 +193,27 @@ public class Client : MonoBehaviour
 
             case ClientState.DONE:
                 if (LvlManager.instance.clientsWaiting.Contains(this))
-                {
                     LvlManager.instance.clientsWaiting.Remove(this);
-                }
+
                 else if (LvlManager.instance.clientsSat.Contains(this))
-                {
                     LvlManager.instance.clientsSat.Remove(this);
-                }
+
                 else if (LvlManager.instance.clientsEating.Contains(this))
-                {
                     LvlManager.instance.clientsEating.Remove(this);
-                }
+
+
+                if (usedTable != null)
+                    usedTable.Unoccupy();
+
+
+                if (Served())
+                    LvlManager.instance.AddScore(this);
+                else if (!Served())
+                    LvlManager.instance.LoseLife();
+
                 usedTable.Unoccupy();
                 usedTable = null;
+
                 break;
 
             default:
@@ -231,7 +253,6 @@ public class Client : MonoBehaviour
                 {
                     selectedFood.gameObject.SetActive(false);
                     SetState(ClientState.DONE);
-                    LvlManager.instance.AddScore(this);
                 }
                 break;
 
@@ -249,20 +270,6 @@ public class Client : MonoBehaviour
     /// </summary>
     private void Leave()
     {
-        if (usedTable != null)
-        {
-            usedTable.Unoccupy();
-        }
-
-        if (Served())
-        {
-            LvlManager.instance.AddScore(this);
-        }
-        else if (!Served())
-        {
-            LvlManager.instance.LoseLife();
-        }
-
         SetTarget(LvlManager.instance.exitPosition.position);
     }
 
@@ -318,8 +325,9 @@ public class Client : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Killzone"))
+        if (collision.tag == "Killzone")
         {
+            Debug.Log("Kill");
             Destroy(gameObject);
         }
     }

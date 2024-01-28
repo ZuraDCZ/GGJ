@@ -4,12 +4,12 @@ public class Food : MonoBehaviour
 {
     [SerializeField] LayerMask foodLayer;
     [SerializeField] int id;
-    private Sprite sprite;
+    private SpriteRenderer spriteRenderer;
     private Transform spawnTracker;
 
     private void Awake()
     {
-        sprite = GetComponent<Sprite>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public int GetID()
@@ -21,10 +21,11 @@ public class Food : MonoBehaviour
     {
         if (newSprite != null)
         {
-            sprite = newSprite;
+            spriteRenderer.sprite = newSprite;
         }
         id = newID;
         transform.position = spawnRelocation;
+        transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
         gameObject.layer = LayerMask.NameToLayer("Food");
     }
 
