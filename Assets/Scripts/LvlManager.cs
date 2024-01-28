@@ -117,6 +117,7 @@ public class LvlManager : MonoBehaviour
         if (currentLifes <= 0)
         {
             GameManager.instance.ChangeGameState(GameState.GameOver);
+            UIManager.instance.GameOverScreen();
         }
     }
 

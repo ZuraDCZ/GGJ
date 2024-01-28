@@ -74,39 +74,47 @@ public class Client : MonoBehaviour
     private void Update()
     {
         HandleBehaviour();
+        HandleGameState();
+    }
+
+    private void HandleGameState()
+    {
+        if (GameManager.instance.GetGameState() == GameState.GameOver)
+        {
+            animator.speed = 0f;
+        }
     }
 
     private void FixedUpdate()
     {
-        //if (GameManager.instance.GetGameState() == GameState.Playing)
-        //{
-
-        //}
-        if (Vector2.Distance(transform.position, target) > 1)
+        if (GameManager.instance.GetGameState() == GameState.Playing)
         {
-            HandleMovement();
-        }
-
-        //Animation logic
-        if (rb.velocity.sqrMagnitude != 0)
-        {
-            animator.SetBool("Moving", true);
-        }
-        else
-        {
-            animator.SetBool("Moving", false);
-        }
-
-        if (state != ClientState.SAT && state != ClientState.EATING)
-        {
-            if (rb.velocity.x > 0)
+            if (Vector2.Distance(transform.position, target) > 1)
             {
-                spriteRenderer.flipX = false;
+                HandleMovement();
             }
-            else if (rb.velocity.x < 0)
+
+            //Animation logic
+            if (rb.velocity.sqrMagnitude != 0)
             {
-                spriteRenderer.flipX = true;
-            } 
+                animator.SetBool("Moving", true);
+            }
+            else
+            {
+                animator.SetBool("Moving", false);
+            }
+
+            if (state != ClientState.SAT && state != ClientState.EATING)
+            {
+                if (rb.velocity.x > 0)
+                {
+                    spriteRenderer.flipX = false;
+                }
+                else if (rb.velocity.x < 0)
+                {
+                    spriteRenderer.flipX = true;
+                }
+            }
         }
     }
 

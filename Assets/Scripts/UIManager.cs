@@ -16,6 +16,10 @@ public class UIManager : MonoBehaviour
     public delegate void OnLifeLost();
     public OnLifeLost onLifeLost;
 
+    [Header("Panels")]
+    [SerializeField] GameObject gameData;
+    [SerializeField] GameObject gameOverScreen;
+
     [Header("Score tracker")]
     [SerializeField] TextMeshProUGUI scoreText;
     
@@ -73,5 +77,11 @@ public class UIManager : MonoBehaviour
     public List<GameObject> GetLifeSprites()
     {
         return currentLifesSprites;
+    }
+
+    public void GameOverScreen()
+    {
+        gameData.SetActive(false);
+        gameOverScreen.SetActive(true);
     }
 }

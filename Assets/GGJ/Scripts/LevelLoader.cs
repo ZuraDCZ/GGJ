@@ -12,8 +12,14 @@ public class LevelLoader : MonoBehaviour
     public void LoadMainGameScene()
     {
         GameManager.instance.ChangeGameState(GameState.Playing);
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(LoadLevel("MainGame"));
     } 
+
+    public void LoadMainMenu()
+    {
+        GameManager.instance.ChangeGameState(GameState.MainMenu);
+        StartCoroutine(LoadLevel("MainMenu"));
+    }
 
     public void LoadOptions()
     {
@@ -30,10 +36,10 @@ public class LevelLoader : MonoBehaviour
         Application.Quit();
     }
 
-    IEnumerator LoadLevel(int p_levelIndex)
+    IEnumerator LoadLevel(string sceneName)
     {
         m_transition.SetTrigger("Start");
         yield return new WaitForSeconds(m_transitionTime);
-        SceneManager.LoadScene(p_levelIndex);
+        SceneManager.LoadScene(sceneName);
     }
 }
