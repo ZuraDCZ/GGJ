@@ -23,7 +23,7 @@ public class Food : MonoBehaviour
         {
             spriteRenderer.sprite = newSprite;
         }
-        spriteRenderer.sortingOrder = 9;
+        spriteRenderer.sortingOrder = 10;
         id = newID;
         transform.position = spawnRelocation;
         transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);

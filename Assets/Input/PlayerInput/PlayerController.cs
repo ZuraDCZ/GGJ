@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform plateTransform;
     [SerializeField] int maxFood = 3;
     [SerializeField] LayerMask clientLayer, foodLayer;
+    [SerializeField] float distance;
     public List<Food> foodList = new List<Food>();
 
     [Header("Sound requirements")]
@@ -104,9 +105,9 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"></param>
     private void Deliver(InputAction.CallbackContext context)
     {
-        if (Physics2D.OverlapCircle(transform.position, 1.0f, clientLayer)) //Find a clients
+        if (Physics2D.OverlapCircle(transform.position, distance, clientLayer)) //Find a clients
         {
-            GameObject c = Physics2D.OverlapCircleAll(transform.position, 1.0f, clientLayer)[0].gameObject; //Get the first one 
+            GameObject c = Physics2D.OverlapCircleAll(transform.position, distance, clientLayer)[0].gameObject; //Get the first one 
             if (c != null)
             {
                 Client clientServed = c.GetComponent<Client>();
@@ -138,7 +139,7 @@ public class PlayerController : MonoBehaviour
     {
         food.transform.SetParent(null); //Clear the player as parent
         food.transform.SetPositionAndRotation(clientServed.GetTable().GetPlatePlace().position, Quaternion.identity); //Put the plate on the table
-        food.gameObject.GetComponent<SpriteRenderer>().sortingOrder = clientServed.GetTable().gameObject.GetComponent<SpriteRenderer>().sortingOrder;
+        food.gameObject.GetComponent<SpriteRenderer>().sortingOrder = clientServed.GetTable().gameObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
         foodList.Remove(food); //Remove from the carried food list
         clientServed.SetFood(food); //Sets food reference to be deactivated on consumed
         clientServed.SetServed(); //Set as fullfilled
@@ -151,9 +152,9 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"></param>
     private void PickUp(InputAction.CallbackContext context)
     {
-        if (Physics2D.OverlapCircle(transform.position, 1.0f, foodLayer) && foodList.Count < maxFood)
+        if (Physics2D.OverlapCircle(transform.position, distance, foodLayer) && foodList.Count < maxFood)
         {
-            GameObject c = Physics2D.OverlapCircleAll(transform.position, 1.0f, foodLayer)[0].gameObject;
+            GameObject c = Physics2D.OverlapCircleAll(transform.position, distance, foodLayer)[0].gameObject;
             if (c != null)
             {
                 Food pickedFood = c.GetComponent<Food>();
@@ -213,6 +214,6 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, 1.0f);
+        Gizmos.DrawWireSphere(transform.position, distance);
     }
 }
