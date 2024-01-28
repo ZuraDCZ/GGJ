@@ -1,0 +1,1052 @@
+fileFormatVersion: 2
+guid: 3ec291e843406184fb6b7fb64af4ff99
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Dialogue cloud_0
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 3304
+        width: 577
+        height: 440
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10affc5da621272438bcfabd7cf03363
+      internalID: 1790122655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_1
+      rect:
+        serializedVersion: 2
+        x: 1479
+        y: 3306
+        width: 608
+        height: 438
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c00c61e209bb5146a2a811f38a03a2e
+      internalID: -503340712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_2
+      rect:
+        serializedVersion: 2
+        x: 2398
+        y: 3312
+        width: 627
+        height: 431
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3ea157b23b96a548aa54f4c2bbdabf5
+      internalID: -1658634876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_3
+      rect:
+        serializedVersion: 2
+        x: 3333
+        y: 3304
+        width: 421
+        height: 440
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31e690328f6d3e5448b7b027e90fe1dc
+      internalID: 362602373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_4
+      rect:
+        serializedVersion: 2
+        x: 4065
+        y: 3310
+        width: 674
+        height: 434
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68e6c14212243e84394e6b9bb6d5487d
+      internalID: 1430086171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_5
+      rect:
+        serializedVersion: 2
+        x: 4941
+        y: 3273
+        width: 583
+        height: 441
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b9cc294452effb46abbc031d6d66b3a
+      internalID: 1275729779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_6
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 2762
+        width: 656
+        height: 406
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 721f82b2a724bc346ad64013bafe63b0
+      internalID: 1737204740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_7
+      rect:
+        serializedVersion: 2
+        x: 1458
+        y: 2809
+        width: 650
+        height: 313
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0608978d52c56643951f299a0829a7a
+      internalID: 1700596422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_8
+      rect:
+        serializedVersion: 2
+        x: 2439
+        y: 2731
+        width: 545
+        height: 437
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0116a772197c9754cb85536fec13fc55
+      internalID: 327970035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_9
+      rect:
+        serializedVersion: 2
+        x: 3259
+        y: 2700
+        width: 569
+        height: 469
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14c4f1cb06474bd49ab134dbf567eca3
+      internalID: 1339161663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_10
+      rect:
+        serializedVersion: 2
+        x: 4179
+        y: 2701
+        width: 445
+        height: 471
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e79b4adec9551a44da1fb772ade16a54
+      internalID: 1716250569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_11
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 2698
+        width: 468
+        height: 474
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2d30a6231a84f34b82f7a76167abe88
+      internalID: 419704419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_15
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 2220
+        width: 697
+        height: 395
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8197afb5a2f73e4382d16b54a836200
+      internalID: -89478931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_16
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 2240
+        width: 656
+        height: 387
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 663f98df354a15a49afd3c72c3b53883
+      internalID: 1369792908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_17
+      rect:
+        serializedVersion: 2
+        x: 2424
+        y: 2220
+        width: 575
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 034e16242e4e4d040a92ce9139308655
+      internalID: -1516138031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_18
+      rect:
+        serializedVersion: 2
+        x: 3224
+        y: 2153
+        width: 639
+        height: 503
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6a543f25bbe14f479aac2b7e84457aa
+      internalID: -1454555013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_19
+      rect:
+        serializedVersion: 2
+        x: 4141
+        y: 2167
+        width: 519
+        height: 471
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a4db188d7ed2ff4896ff045cd1d0288
+      internalID: 2017107189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_20
+      rect:
+        serializedVersion: 2
+        x: 5017
+        y: 2167
+        width: 437
+        height: 469
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fa04190d9d386b42ab1cc1fa7b3b853
+      internalID: 670268925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_21
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 2194
+        width: 35
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4809aea38d3ce624388f323c1ec2dcee
+      internalID: -1875834478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_22
+      rect:
+        serializedVersion: 2
+        x: 1141
+        y: 2185
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c43535177b8be274eaacddb5227534ac
+      internalID: 44449007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_23
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 1587
+        width: 603
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c76f9f9270430f44b33cd067d169462
+      internalID: 1785835066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_24
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 1509
+        width: 655
+        height: 615
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d71213c7280c6dd47affbfb95298b016
+      internalID: 183042173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_25
+      rect:
+        serializedVersion: 2
+        x: 2322
+        y: 1584
+        width: 779
+        height: 469
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c04b6b74e51fad4f9aa9c440c812ca6
+      internalID: -1237538074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_26
+      rect:
+        serializedVersion: 2
+        x: 3289
+        y: 1584
+        width: 509
+        height: 468
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5acae47c9bf95ad4293e941ec8f507c2
+      internalID: 1910162030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_27
+      rect:
+        serializedVersion: 2
+        x: 4132
+        y: 1575
+        width: 539
+        height: 484
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44e3a9ec27d1a5a46bd646d7fcb7dc90
+      internalID: 418086231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_28
+      rect:
+        serializedVersion: 2
+        x: 5049
+        y: 1564
+        width: 372
+        height: 474
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3450eb43620e2044bb11506fc0e6d0d6
+      internalID: 636008818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_29
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 977
+        width: 621
+        height: 431
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f780fba5a20d44f498dd978b5c16231d
+      internalID: -1549910439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_30
+      rect:
+        serializedVersion: 2
+        x: 1513
+        y: 974
+        width: 541
+        height: 437
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb42db3ae9150c246884912e6105b2d3
+      internalID: 1005429866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_31
+      rect:
+        serializedVersion: 2
+        x: 2430
+        y: 928
+        width: 563
+        height: 530
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f00ca1e268b85f45ac24cc8192cd6f7
+      internalID: 693071803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_32
+      rect:
+        serializedVersion: 2
+        x: 3187
+        y: 907
+        width: 716
+        height: 570
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ffcc7d0f3344ad479a899bafac45296
+      internalID: -478152703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_33
+      rect:
+        serializedVersion: 2
+        x: 4226
+        y: 963
+        width: 352
+        height: 463
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98def7e93ca0ee74e9fdc02ffd24dbc0
+      internalID: 458311935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_34
+      rect:
+        serializedVersion: 2
+        x: 5055
+        y: 1004
+        width: 358
+        height: 442
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e606744fa782ae946a1ed953e3e2334c
+      internalID: -1479067732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_35
+      rect:
+        serializedVersion: 2
+        x: 5313
+        y: 977
+        width: 61
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38f9033b340040149a17fbcf4d18b7ae
+      internalID: -1862503219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_36
+      rect:
+        serializedVersion: 2
+        x: 5357
+        y: 954
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 932bde09120f13c40b430108e3e2066f
+      internalID: 788350154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_37
+      rect:
+        serializedVersion: 2
+        x: 5383
+        y: 940
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5da8a1f6cecf8684c84a8a20b6457b6b
+      internalID: -1373032326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_38
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 336
+        width: 823
+        height: 448
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b4bfd40eaedb924a93a9c84f8a544d0
+      internalID: -54025701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_39
+      rect:
+        serializedVersion: 2
+        x: 1501
+        y: 315
+        width: 566
+        height: 489
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d3b550a734e74146a17ba415a471198
+      internalID: -30799464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_40
+      rect:
+        serializedVersion: 2
+        x: 2571
+        y: 324
+        width: 281
+        height: 472
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9718e9582016a946a5642a9e265ac5e
+      internalID: -1874737122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_41
+      rect:
+        serializedVersion: 2
+        x: 3236
+        y: 315
+        width: 618
+        height: 489
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f1a22997b534144097169309b2e6c4c
+      internalID: 1006134028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_42
+      rect:
+        serializedVersion: 2
+        x: 4089
+        y: 259
+        width: 623
+        height: 600
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63ecdc5ce56614547a4c6fe707f71625
+      internalID: -1571546645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dialogue cloud_43
+      rect:
+        serializedVersion: 2
+        x: 4976
+        y: 309
+        width: 519
+        height: 498
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 850ccd023e4476f469e2f0b44dc904eb
+      internalID: -581964447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Dialogue cloud_0: 1790122655
+      Dialogue cloud_1: -503340712
+      Dialogue cloud_10: 1716250569
+      Dialogue cloud_11: 419704419
+      Dialogue cloud_12: -798408174
+      Dialogue cloud_13: -1016286779
+      Dialogue cloud_14: 1113737382
+      Dialogue cloud_15: -89478931
+      Dialogue cloud_16: 1369792908
+      Dialogue cloud_17: -1516138031
+      Dialogue cloud_18: -1454555013
+      Dialogue cloud_19: 2017107189
+      Dialogue cloud_2: -1658634876
+      Dialogue cloud_20: 670268925
+      Dialogue cloud_21: -1875834478
+      Dialogue cloud_22: 44449007
+      Dialogue cloud_23: 1785835066
+      Dialogue cloud_24: 183042173
+      Dialogue cloud_25: -1237538074
+      Dialogue cloud_26: 1910162030
+      Dialogue cloud_27: 418086231
+      Dialogue cloud_28: 636008818
+      Dialogue cloud_29: -1549910439
+      Dialogue cloud_3: 362602373
+      Dialogue cloud_30: 1005429866
+      Dialogue cloud_31: 693071803
+      Dialogue cloud_32: -478152703
+      Dialogue cloud_33: 458311935
+      Dialogue cloud_34: -1479067732
+      Dialogue cloud_35: -1862503219
+      Dialogue cloud_36: 788350154
+      Dialogue cloud_37: -1373032326
+      Dialogue cloud_38: -54025701
+      Dialogue cloud_39: -30799464
+      Dialogue cloud_4: 1430086171
+      Dialogue cloud_40: -1874737122
+      Dialogue cloud_41: 1006134028
+      Dialogue cloud_42: -1571546645
+      Dialogue cloud_43: -581964447
+      Dialogue cloud_5: 1275729779
+      Dialogue cloud_6: 1737204740
+      Dialogue cloud_7: 1700596422
+      Dialogue cloud_8: 327970035
+      Dialogue cloud_9: 1339161663
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
