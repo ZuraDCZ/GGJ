@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour
     public List<Food> foodList = new List<Food>();
 
     [Header("Sound requirements")]
-    [SerializeField] AudioClip footestepsAudioClip;
-    [SerializeField] float footstepTimer = 0;
+    [SerializeField] AudioSource getPlate;
+    [SerializeField] AudioSource servePlate;
 
     //[Header("Sound requirements")]
     //[SerializeField] AudioClip footestepsAudioClip;
@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
 
     //Components
     private Rigidbody2D rb;
-    private AudioSource footestepsAudioSource;
     private PlayerControls playerControls;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -34,7 +33,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        footestepsAudioSource = GetComponent<AudioSource>();
         playerControls = new PlayerControls();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -143,6 +141,7 @@ public class PlayerController : MonoBehaviour
         foodList.Remove(food); //Remove from the carried food list
         clientServed.SetFood(food); //Sets food reference to be deactivated on consumed
         clientServed.SetServed(); //Set as fullfilled
+        servePlate.Play();
         clientServed.SetState(ClientState.EATING); //Notify the client to start eating
     }
 
@@ -160,6 +159,7 @@ public class PlayerController : MonoBehaviour
                 Food pickedFood = c.GetComponent<Food>();
                 if (pickedFood != null && !foodList.Contains(pickedFood))
                 {
+                    getPlate.Play();
                     pickedFood.gameObject.layer = 0;
                     pickedFood.transform.SetParent(plateTransform, false);
                     FoodSpawner.instance.EmptySpawn(pickedFood.GetSpawn());
