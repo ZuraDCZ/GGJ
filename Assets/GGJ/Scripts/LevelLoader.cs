@@ -11,6 +11,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadMainGameScene()
     {
+        GameManager.instance.ChangeGameState(GameState.Playing);
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     } 
 

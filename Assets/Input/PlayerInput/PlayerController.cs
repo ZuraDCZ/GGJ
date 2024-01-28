@@ -104,9 +104,9 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"></param>
     private void Deliver(InputAction.CallbackContext context)
     {
-        if (Physics2D.OverlapCircle(transform.position, 2.0f, clientLayer)) //Find a clients
+        if (Physics2D.OverlapCircle(transform.position, 1.0f, clientLayer)) //Find a clients
         {
-            GameObject c = Physics2D.OverlapCircleAll(transform.position, 2.0f, clientLayer)[0].gameObject; //Get the first one 
+            GameObject c = Physics2D.OverlapCircleAll(transform.position, 1.0f, clientLayer)[0].gameObject; //Get the first one 
             if (c != null)
             {
                 Client clientServed = c.GetComponent<Client>();
@@ -151,9 +151,9 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"></param>
     private void PickUp(InputAction.CallbackContext context)
     {
-        if (Physics2D.OverlapCircle(transform.position, 2.0f, foodLayer) && foodList.Count < maxFood)
+        if (Physics2D.OverlapCircle(transform.position, 1.0f, foodLayer) && foodList.Count < maxFood)
         {
-            GameObject c = Physics2D.OverlapCircleAll(transform.position, 2.0f, foodLayer)[0].gameObject;
+            GameObject c = Physics2D.OverlapCircleAll(transform.position, 1.0f, foodLayer)[0].gameObject;
             if (c != null)
             {
                 Food pickedFood = c.GetComponent<Food>();
@@ -208,5 +208,11 @@ public class PlayerController : MonoBehaviour
         {
             spriteRenderer.sortingOrder = 7;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 1.0f);
     }
 }

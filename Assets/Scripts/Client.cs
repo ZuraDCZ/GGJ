@@ -224,10 +224,15 @@ public class Client : MonoBehaviour
 
 
                 if (Served())
-                    LvlManager.instance.AddScore(this);
+                {
+                    LvlManager.instance.AddScore();
+                }
+                    
                 else if (!Served())
+                {
                     LvlManager.instance.LoseLife();
-
+                }
+                    
                 usedTable.Unoccupy();
                 usedTable = null;
 

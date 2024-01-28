@@ -45,7 +45,7 @@ public class FoodSpawner : MonoBehaviour
     /// </summary>
     private void HandleFoodSpawns()
     {
-        if (LvlManager.instance.clientsSat.Count > 0) //Check if there are clients sat down
+        if (LvlManager.instance.clientsSat.Count > 0 && spawnsOccupied.Count < foodSpawns.Count) //Check if there are clients sat down
         {
             currentTimer -= Time.deltaTime;
             if (currentTimer < 0 && spawnsOccupied.Count <= foodSpawns.Count) //Check if there is enough space to spawn food

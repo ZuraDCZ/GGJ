@@ -102,9 +102,9 @@ public class LvlManager : MonoBehaviour
     /// Calculate score on client fullfilled
     /// </summary>
     /// <param name="clientServed"></param>
-    public void AddScore(Client clientServed)
+    public void AddScore()
     {
-        score += (5 * (clientServed.GetPatience() / 100));
+        score += 5;
     }
 
     /// <summary>
@@ -113,10 +113,25 @@ public class LvlManager : MonoBehaviour
     public void LoseLife()
     {
         currentLifes--;
-        Debug.Log(currentLifes);
+        UIManager.instance.UpdateLifes();
         if (currentLifes <= 0)
         {
             GameManager.instance.ChangeGameState(GameState.GameOver);
         }
+    }
+
+    public int GetMaxLifes()
+    {
+        return maxLifes;
+    }
+
+    public int GetCurrentLifes()
+    {
+        return currentLifes;
+    }
+
+    public float GetScore()
+    {
+        return score;
     }
 }
