@@ -138,6 +138,7 @@ public class PlayerController : MonoBehaviour
     {
         food.transform.SetParent(null); //Clear the player as parent
         food.transform.SetPositionAndRotation(clientServed.GetTable().GetPlatePlace().position, Quaternion.identity); //Put the plate on the table
+        food.gameObject.GetComponent<SpriteRenderer>().sortingOrder = clientServed.GetTable().gameObject.GetComponent<SpriteRenderer>().sortingOrder;
         foodList.Remove(food); //Remove from the carried food list
         clientServed.SetFood(food); //Sets food reference to be deactivated on consumed
         clientServed.SetServed(); //Set as fullfilled

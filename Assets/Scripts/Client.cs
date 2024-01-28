@@ -273,15 +273,16 @@ public class Client : MonoBehaviour
                     if(usedTable != null)
                     {
                         transform.SetParent(usedTable.GetSit(), false);
-                        transform.localScale = new Vector3(0.6f, 0.6f, 1);
-                        transform.SetLocalPositionAndRotation(new Vector3(0.4f, 0.7f, 0), Quaternion.identity);
+                        transform.localScale = new Vector3(0.8f, 0.8f, 1f);
                         if (transform.position.x < usedTable.gameObject.transform.position.x)
                         {
                             spriteRenderer.flipX = false;
+                            transform.SetLocalPositionAndRotation(new Vector3(0.4f, 0.9f, 0), Quaternion.identity);
                         }
                         else if (transform.position.x > usedTable.gameObject.transform.position.x)
                         {
                             spriteRenderer.flipX = true;
+                            transform.SetLocalPositionAndRotation(new Vector3(-0.4f, 0.9f, 0), Quaternion.identity);
                         }
                     }
 
