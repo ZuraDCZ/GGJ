@@ -20,7 +20,7 @@ public class LvlManager : MonoBehaviour
 
     //Player score values
     private float score;
-    [SerializeField]int maxLifes = 5;
+    [SerializeField] int maxLifes = 5;
     private int currentLifes;
     private void Awake()
     {
@@ -48,7 +48,7 @@ public class LvlManager : MonoBehaviour
         if (GameManager.instance.GetGameState() == GameState.Playing)
         {
             GenerateClients();
-            SendClients(); 
+            SendClients();
         }
     }
 
@@ -58,7 +58,7 @@ public class LvlManager : MonoBehaviour
     private void GenerateClients()
     {
         currentSpawnTimer -= Time.deltaTime; //Substracts time to spawn
-        if (currentSpawnTimer <= 0 && clientsWaiting.Count < tables.Count) //Checks if its time to spawn and if there is room to spawn another client
+        if (currentSpawnTimer <= 0 && clientsWaiting.Count < 1) //Checks if its time to spawn and if there is room to spawn another client
         {
             int randomIndex = Random.Range(0, clientPrefab.Length); //Selects a client to spawn from the prefab array
             Client newClient = Instantiate(clientPrefab[randomIndex], spawnPosition.position, Quaternion.identity).GetComponent<Client>(); //Spawns client at given location
@@ -98,14 +98,22 @@ public class LvlManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Calculate score on client fullfilled
+    /// </summary>
+    /// <param name="clientServed"></param>
     public void AddScore(Client clientServed)
     {
         score += (5 * (clientServed.GetPatience() / 100));
     }
 
+    /// <summary>
+    /// GameOver Condition
+    /// </summary>
     public void LoseLife()
     {
         currentLifes--;
+        Debug.Log(currentLifes);
         if (currentLifes <= 0)
         {
             GameManager.instance.ChangeGameState(GameState.GameOver);

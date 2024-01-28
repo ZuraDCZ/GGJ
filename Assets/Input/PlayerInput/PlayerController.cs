@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,8 +28,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource footestepsAudioSource;
     private PlayerControls playerControls;
     private Animator animator;
-
-
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         footestepsAudioSource = GetComponent<AudioSource>();
         playerControls = new PlayerControls();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         playerControls.Gameplay.Enable(); //Enable gameplay control scheme
 
         //Subscribe to player actions
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
         if (GameManager.instance.GetGameState() == GameState.Playing)
         {
             CheckMovement();
+            CheckLayer();
         }
     }
 
@@ -174,12 +176,36 @@ public class PlayerController : MonoBehaviour
         foreach (Food food in foodList)
         {
             int index = foodList.IndexOf(food);
-            food.transform.SetLocalPositionAndRotation(new Vector3(0, index * 0.3f, 0), Quaternion.identity);
+            food.transform.SetLocalPositionAndRotation(new Vector3(0, index * 0.2f, 0), Quaternion.identity);
         }
     }
 
     private void PauseGame(InputAction.CallbackContext context)
     {
         GameManager.instance.ChangeGameState(GameState.Pause);
+    }
+
+    /// <summary>
+    /// Changes sprite sort in layer depending on height
+    /// </summary>
+    private void CheckLayer()
+    {
+        if (transform.position.y > 0.7f && transform.position.y < 3f)
+        {
+            spriteRenderer.sortingOrder = 2;
+        }
+        else if (transform.position.y > 0f && transform.position.y < 0.7f)
+        {
+            spriteRenderer.sortingOrder = 4;
+        }
+        
+        else if (transform.position.y < 0f && transform.position.y > - 1.5f)
+        {
+            spriteRenderer.sortingOrder = 5;
+        }
+        else if (transform.position.y < -1.5f && transform.position.y > -4f)
+        {
+            spriteRenderer.sortingOrder = 7;
+        }
     }
 }

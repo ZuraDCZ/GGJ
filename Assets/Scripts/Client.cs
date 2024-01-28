@@ -25,7 +25,7 @@ public class Client : MonoBehaviour
     private Table usedTable;
     private Food selectedFood;
     private int selectedFoodIndex;
-    [SerializeField] ParticleSystem ps;
+    private SpriteRenderer spriteRenderer;
 
     public delegate void OnOrder();
     public OnOrder onOrder;
@@ -47,7 +47,7 @@ public class Client : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        ps = GetComponent<ParticleSystem>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         SetState(ClientState.NONE);
     }
 
@@ -83,6 +83,7 @@ public class Client : MonoBehaviour
         {
             HandleMovement();
         }
+
         //Animation logic
         if (rb.velocity.sqrMagnitude != 0)
         {
@@ -91,6 +92,15 @@ public class Client : MonoBehaviour
         else
         {
             animator.SetBool("Moving", false);
+        }
+
+        if (rb.velocity.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (rb.velocity.x < 0)
+        {
+            spriteRenderer.flipX = true;
         }
     }
 
@@ -169,8 +179,6 @@ public class Client : MonoBehaviour
     {
         state = newState;
 
-        ///TODO: Animation logic
-
         //Handles the start of each state
         switch (state)
         {
@@ -189,9 +197,14 @@ public class Client : MonoBehaviour
             case ClientState.EATING:
                 LvlManager.instance.clientsSat.Remove(this);
                 LvlManager.instance.clientsEating.Add(this);
+                animator.SetBool("Sit", false);
+                animator.SetBool("Eating", true);
                 break;
 
             case ClientState.DONE:
+                animator.SetBool("Eating", false);
+                animator.SetBool("Sit", false);
+
                 if (LvlManager.instance.clientsWaiting.Contains(this))
                     LvlManager.instance.clientsWaiting.Remove(this);
 
@@ -241,9 +254,16 @@ public class Client : MonoBehaviour
 
             case ClientState.SAT:
                 currentPatience -= Time.deltaTime;
+                
                 if (currentPatience <= 0)
                 {
                     SetState(ClientState.DONE);
+                }
+
+                //Check if its near sit
+                if (Vector2.Distance(target, transform.position) < 1f)
+                {
+                    animator.SetBool("Sit", true);
                 }
                 break;
 
