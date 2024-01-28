@@ -9,18 +9,27 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float m_moveForce;
 
     [Header("Food delivery Variables")]
+    [SerializeField] Transform plateTransform;
     [SerializeField] int maxFood = 3;
     [SerializeField] LayerMask clientLayer, foodLayer;
+    public List<Food> foodList = new List<Food>();
 
+<<<<<<< Updated upstream
     [Header("Sound requirements")]
     [SerializeField] AudioClip footestepsAudioClip;
     [SerializeField] float footstepTimer = 0;
     public List<Food> foodList = new List<Food>();
+=======
+    //[Header("Sound requirements")]
+    //[SerializeField] AudioClip footestepsAudioClip;
+    //[SerializeField] float footstepTimer = 0;
+>>>>>>> Stashed changes
 
     //Components
     private Rigidbody2D rb;
     private AudioSource footestepsAudioSource;
     private PlayerControls playerControls;
+    private Animator animator;
 
 
 
@@ -29,6 +38,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         footestepsAudioSource = GetComponent<AudioSource>();
         playerControls = new PlayerControls();
+        animator = GetComponent<Animator>();
         playerControls.Gameplay.Enable(); //Enable gameplay control scheme
 
         //Subscribe to player actions
@@ -69,6 +79,8 @@ public class PlayerController : MonoBehaviour
         }
 
         ///TODO: AnimationLogic
+        animator.SetFloat("MovementY", rb.velocity.y);
+        animator.SetFloat("MovementX", rb.velocity.x);
     }
 
     /// <summary>
@@ -141,16 +153,14 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(transform.position, 2.0f, foodLayer) && foodList.Count < maxFood)
         {
-            Debug.Log("Found food");
             GameObject c = Physics2D.OverlapCircleAll(transform.position, 2.0f, foodLayer)[0].gameObject;
             if (c != null)
             {
                 Food pickedFood = c.GetComponent<Food>();
                 if (pickedFood != null && !foodList.Contains(pickedFood))
                 {
-                    Debug.Log("Picking up food");
                     pickedFood.gameObject.layer = 0;
-                    pickedFood.transform.SetParent(transform, false);
+                    pickedFood.transform.SetParent(plateTransform, false);
                     FoodSpawner.instance.EmptySpawn(pickedFood.GetSpawn());
                     foodList.Add(pickedFood);
                     UpdateFoodTransform();
@@ -167,7 +177,7 @@ public class PlayerController : MonoBehaviour
         foreach (Food food in foodList)
         {
             int index = foodList.IndexOf(food);
-            food.transform.SetLocalPositionAndRotation(new Vector3(1, index * 0.25f, 0), Quaternion.identity);
+            food.transform.SetLocalPositionAndRotation(new Vector3(0, index * 0.3f, 0), Quaternion.identity);
         }
     }
 
