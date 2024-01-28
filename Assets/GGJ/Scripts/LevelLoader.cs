@@ -2,12 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelLoader : MonoBehaviour
 {
     [SerializeField] Animator m_transition;
     [SerializeField] Animator m_optionsPanel;
     [SerializeField] float m_transitionTime = 1f;
+    [SerializeField] AudioSource m_buttonSound;
+
+    [SerializeField] Slider m_volumeSlider;
+
+    public void PressedButton()
+    {
+        m_buttonSound.Play();
+    }
+
+    public void ChangeVolume()
+    {
+        AudioListener.volume = m_volumeSlider.value;
+    }
 
     public void LoadMainGameScene()
     {

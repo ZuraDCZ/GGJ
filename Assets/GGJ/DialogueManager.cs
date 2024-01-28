@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] Animator animator;
 
     [SerializeField] DialogueTrigger dialogueTrigger;
+    [SerializeField] AudioSource comedianAudio;
 
     private List<string> listDialogues;
 
@@ -21,7 +22,6 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         listDialogues = new List<string>();
-
         currentTime = maxTime;
     }
 
@@ -31,7 +31,9 @@ public class DialogueManager : MonoBehaviour
 
         if (currentTime <= 0f)
         {
+            currentTime = maxTime + 5f;
             dialogueTrigger.TriggerDialogue();
+            comedianAudio.Play();
             StartCoroutine(CloseCloud());
         }
     }
@@ -53,13 +55,14 @@ public class DialogueManager : MonoBehaviour
     IEnumerator CloseCloud()
     {
         yield return new WaitForSeconds(5f);
-        currentTime = maxTime;
         randomIndex = Random.Range(0, listDialogues.Count - 1);
+        
         EndDialogue();
     }
 
     void EndDialogue()
     {
         animator.SetBool("IsOpen", false);
+        comedianAudio.Stop();
     }
 }
