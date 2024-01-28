@@ -86,8 +86,8 @@ public class LvlManager : MonoBehaviour
                         {
                             Client clientToSit = clientsWaiting.ElementAt(0); //Gets the first one on queue
                             clientToSit.SetTarget(table.GetSit().position); //Set destination towards table sit
-                            clientToSit.SetState(ClientState.SAT); //Set sitting state
                             clientToSit.SetTable(table); //Assign table
+                            clientToSit.SetState(ClientState.SAT); //Set sitting state
                             table.Occupy(); //Occupies the table
                             currentSendTimer = sendRate; //Resets timer
                             break;

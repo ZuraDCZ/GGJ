@@ -94,13 +94,16 @@ public class Client : MonoBehaviour
             animator.SetBool("Moving", false);
         }
 
-        if (rb.velocity.x > 0)
+        if (state != ClientState.SAT && state != ClientState.EATING)
         {
-            spriteRenderer.flipX = false;
-        }
-        else if (rb.velocity.x < 0)
-        {
-            spriteRenderer.flipX = true;
+            if (rb.velocity.x > 0)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else if (rb.velocity.x < 0)
+            {
+                spriteRenderer.flipX = true;
+            } 
         }
     }
 
@@ -202,6 +205,7 @@ public class Client : MonoBehaviour
                 break;
 
             case ClientState.DONE:
+                transform.parent = null;
                 animator.SetBool("Eating", false);
                 animator.SetBool("Sit", false);
 
@@ -261,9 +265,26 @@ public class Client : MonoBehaviour
                 }
 
                 //Check if its near sit
-                if (Vector2.Distance(target, transform.position) < 1f)
+                if (Vector2.Distance(target, transform.position) < 1.2f)
                 {
+                    rb.velocity = Vector2.zero;
                     animator.SetBool("Sit", true);
+
+                    if(usedTable != null)
+                    {
+                        transform.SetParent(usedTable.GetSit(), false);
+                        transform.localScale = new Vector3(0.6f, 0.6f, 1);
+                        transform.SetLocalPositionAndRotation(new Vector3(0.4f, 0.7f, 0), Quaternion.identity);
+                        if (transform.position.x < usedTable.gameObject.transform.position.x)
+                        {
+                            spriteRenderer.flipX = false;
+                        }
+                        else if (transform.position.x > usedTable.gameObject.transform.position.x)
+                        {
+                            spriteRenderer.flipX = true;
+                        }
+                    }
+
                 }
                 break;
 
@@ -290,6 +311,7 @@ public class Client : MonoBehaviour
     /// </summary>
     private void Leave()
     {
+        transform.parent = null;
         SetTarget(LvlManager.instance.exitPosition.position);
     }
 
@@ -347,7 +369,6 @@ public class Client : MonoBehaviour
     {
         if (collision.tag == "Killzone")
         {
-            Debug.Log("Kill");
             Destroy(gameObject);
         }
     }
