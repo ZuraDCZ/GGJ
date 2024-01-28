@@ -26,6 +26,8 @@ public class Client : MonoBehaviour
     private Food selectedFood;
     private int selectedFoodIndex;
     private SpriteRenderer spriteRenderer;
+    [SerializeField] SpriteRenderer cloudBox;
+    [SerializeField] SpriteRenderer foodDesired;
 
     public delegate void OnOrder();
     public OnOrder onOrder;
@@ -63,6 +65,7 @@ public class Client : MonoBehaviour
         //Set the the ordered food ID
         int foodAmount = FoodSpawner.instance.GetSpritesLength();
         selectedFoodIndex = Random.Range(0, foodAmount);
+        foodDesired.sprite = FoodSpawner.instance.GetSprite()[selectedFoodIndex];
 
         //Subscribe to path updating. Needed to move
         InvokeRepeating("UpdatePath", 0f, 0.5f);
@@ -270,18 +273,24 @@ public class Client : MonoBehaviour
                     rb.velocity = Vector2.zero;
                     animator.SetBool("Sit", true);
 
-                    if(usedTable != null)
+                    if (usedTable != null)
                     {
+                        cloudBox.sortingOrder = usedTable.gameObject.GetComponent<SpriteRenderer>().sortingOrder;
+                        foodDesired.sortingOrder = usedTable.gameObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
+
                         transform.SetParent(usedTable.GetSit(), false);
                         transform.localScale = new Vector3(0.8f, 0.8f, 1f);
                         if (transform.position.x < usedTable.gameObject.transform.position.x)
                         {
                             spriteRenderer.flipX = false;
+                            cloudBox.flipX = false;
                             transform.SetLocalPositionAndRotation(new Vector3(0.4f, 0.9f, 0), Quaternion.identity);
                         }
                         else if (transform.position.x > usedTable.gameObject.transform.position.x)
                         {
                             spriteRenderer.flipX = true;
+                            cloudBox.flipX = true;
+                            cloudBox.gameObject.transform.SetLocalPositionAndRotation(new Vector3(1.5f, 1.6f, 0), Quaternion.identity);
                             transform.SetLocalPositionAndRotation(new Vector3(-0.4f, 0.9f, 0), Quaternion.identity);
                         }
                     }

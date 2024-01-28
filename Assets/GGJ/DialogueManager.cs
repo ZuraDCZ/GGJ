@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,53 +10,56 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] Animator animator;
 
-    private Queue<string> sentences;
-    
+    [SerializeField] DialogueTrigger dialogueTrigger;
+
+    private List<string> listDialogues;
+
+    private float maxTime = 10f;
+    public float currentTime;
+    private int randomIndex;
+
     void Start()
     {
-        sentences = new Queue<string>();
+        listDialogues = new List<string>();
+
+        currentTime = maxTime;
     }
 
-    public void StartDialogue(ObjectDialogue dialogue)
+    private void Update()
+    {
+        currentTime -= Time.deltaTime;
+
+        if (currentTime <= 0f)
+        {
+            dialogueTrigger.TriggerDialogue();
+            StartCoroutine(CloseCloud());
+        }
+    }
+
+    public void StartTalking(ObjectDialogue dialogue)
     {
         animator.SetBool("IsOpen", true);
 
         nameText.text = dialogue.name;
 
-        sentences.Clear();
-
-        foreach(string sentence in dialogue.sentences)
+        foreach (string dial in dialogue.sentences)
         {
-            sentences.Enqueue(sentence);
+            listDialogues.Add(dial);
         }
 
-        DisplayNextSentence();
+        dialogueText.text = listDialogues[randomIndex];
     }
 
-    public void DisplayNextSentence()
+    IEnumerator CloseCloud()
     {
-        if (sentences.Count == 0)
-        {
-            EndDialogue();
-            return;
-        }
-        string sentence = sentences.Dequeue();
-        StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
-    }
-
-    IEnumerator TypeSentence(string sentence)
-    {
-        dialogueText.text = "";
-        foreach(char letter in sentence.ToCharArray())
-        {
-            dialogueText.text += letter;
-            yield return null;
-        }
+        yield return new WaitForSeconds(5f);
+        currentTime = maxTime;
+        randomIndex = Random.Range(0, listDialogues.Count - 1);
+        EndDialogue();
     }
 
     void EndDialogue()
     {
-        animator.SetBool("IsOpen", true);
+        animator.SetBool("IsOpen", false);
     }
 }
