@@ -93,6 +93,11 @@ public class FoodSpawner : MonoBehaviour
         }
     }
 
+    public Sprite[] GetSprite()
+    {
+        return foodSprites;
+    }
+
     public int GetSpritesLength()
     {
         return foodSprites.Length;
